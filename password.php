@@ -7,7 +7,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Password Reset - SB Admin</title>
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="Style/bootstrap.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="bg-primary">
@@ -27,8 +27,8 @@
                                                 <label for="inputEmail">Email address</label>
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="login.html">Return to login</a>
-                                                <a class="btn btn-primary" href="login.html">Reset Password</a>
+                                                <a class="small" href="login.php">Return to login</a>
+                                                <a class="btn btn-primary" href="login.php">Reset Password</a>
                                             </div>
                                         </form>
                                     </div>
@@ -45,7 +45,7 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                            <div class="text-muted">Copyright &copy; RJ-cyber23 2025</div>
                             <div>
                                 <a href="#">Privacy Policy</a>
                                 &middot;
