@@ -2,7 +2,7 @@
     $host= "localhost";
     $user= "root";
     $pass="";
-    $db="RevisionFor_POS";
+    $db="MyPOS";
     $conn="";
 
     try
@@ -13,5 +13,5 @@
     catch(mysqli_sql_exception $e){
         echo "Not connected";
     }
-    
+    echo "Connected"
 ?>
