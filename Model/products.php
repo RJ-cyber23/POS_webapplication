@@ -1,26 +1,36 @@
 <?php
-require_once 'database.php'; // Your database connection
+require_once 'core/database.php';
 
-$sql = "SELECT * FROM Products";
-$result = $conn->query($sql);
+class products{
+    public static function getAll()
+    {
+        $conn=Database::connect();
+        $result=$conn->query("SELECT * FROM Products");
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 
-if ($result && $result->num_rows > 0):
-    while ($row = $result->fetch_assoc()):
+    public function data_products()
+    {
+        $products = self::getAll();
+
+        if (!empty($products)) {
+            foreach ($products as $row) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($row['product_id']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['product_name']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['product_code']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['description']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['category_id']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['brand_id']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['supplier_id']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['create_at']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['update_at']) . "</td>";
+                echo "</tr>";
+            }
+        } else {
+            echo "<tr><td colspan='9' class='text-center'>No products found.</td></tr>";
+        }
+    }
+}
 ?>
-    <tr>
-        <td><?= htmlspecialchars($row['product_id']); ?></td>
-        <td><?= htmlspecialchars($row['product_name']); ?></td>
-        <td><?= htmlspecialchars($row['product_code']); ?></td>
-        <td><?= htmlspecialchars($row['description']); ?></td>
-        <td><?= htmlspecialchars($row['category_id']); ?></td>
-        <td><?= htmlspecialchars($row['brand_id']); ?></td>
-        <td><?= htmlspecialchars($row['supplier_id']); ?></td>
-        <td><?= htmlspecialchars($row['create_at']); ?></td>
-        <td><?= htmlspecialchars($row['update_at']); ?></td>
-    </tr>
-<?php
-    endwhile;
-else:
-?>
-    <tr><td colspan="9" class="text-center">No products found.</td></tr>
-<?php endif; ?>
+    
