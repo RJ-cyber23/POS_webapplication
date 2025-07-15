@@ -16,7 +16,7 @@
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="index.php">Point Of Sale</a>
             <!-- Sidebar Toggle-->
-           
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="input-group">
@@ -108,45 +108,96 @@
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Dashboard</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <li class="breadcrumb-item active">Dashboard Reports</li>
                         </ol>
+
+                         <div class="row">
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-area me-1"></i>
+                                        Area Chart Example
+                                    </div>
+                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-bar me-1"></i>
+                                        Bar Chart Example
+                                    </div>
+                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                                </div>
+                            </div>
+
+                        <!--End of day summary-->
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                DataTable Example
+                                End of Day Summary 
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
                                      <table class="table table-bordered table-striped">
                                          <thead class="table-dark">
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Name</th>
-                                                <th>Code</th>
-                                                <th>Description</th>
-                                                <th>Category ID</th>
-                                                <th>Brand ID</th>
-                                                <th>Supplier ID</th>
-                                                <th>Created At</th>
-                                                <th>Updated At</th>
-                                                  <th>Remarks</th>
+                                                <th> invoice_date </th>
+                                                <th> total_sales </th>
+                                                <th>total_transaction </th>
+                                                <th>total_items_sold </th>
+                                                <th>total_cash</th>
+                                                <th>total_profit </th>
                                             </tr>
                                         </thead>       
                                         <tbody>
-                                            <?php $conn=new products();
-                                                $conn->data_products();
-                                                
-                                            ?>
+                                            
+                                           <?php $conn=new ViewDB();
+                                                $conn->Summary();
+                                           ?>
                                         </tbody>
                                 </table>
                             </div>
                         </div>
+                        <!--End of day summary-->
+
+                            <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                              Inventories Status
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                     <table class="table table-bordered table-striped">
+                                         <thead class="table-dark">
+                                            <tr>
+                                                <th> product_id </th>
+                                                <th> product_name </th>
+                                                <th>size </th>
+                                                <th>color </th>
+                                                <th>quantity_stock_in</th>
+                                                <th>sales_stock_out </th>
+                                                <th>quantity_on_hand </th>
+                                                <th>last_restock_date </th>
+                                            </tr>
+                                        </thead>       
+                                        <tbody>
+                                            
+                                         <?php
+                                         $conn=new ViewDB();
+                                         $conn->inventories();
+                                         ?>
+                                        </tbody>
+                                </table>
+                            </div>
+                        </div>
+
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                            <div class="text-muted">Copyright &copy; SoftDev 2025</div>
                             <div>
                                 <a href="#">Privacy Policy</a>
                                 &middot;
@@ -158,7 +209,7 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script src="assets/js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="assets/demo/chart-area-demo.js"></script>
         <script src="assets/demo/chart-bar-demo.js"></script>

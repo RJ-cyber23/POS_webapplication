@@ -31,6 +31,7 @@ class products{
             echo "<tr><td colspan='9' class='text-center'>No products found.</td></tr>";
         }
     }
+
 }
 ?>
     

@@ -6,6 +6,9 @@ ini_set('display_errors', 1);
 require_once 'core/database.php';
 require_once 'Model/products.php';
 require_once 'controller/HomeController.php';
+require_once 'Model/viewDB.php';
+
+
  
 
 
