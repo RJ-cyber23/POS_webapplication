@@ -4,9 +4,9 @@ require_once 'core/database.php';
 class products{
     public static function getAll()
     {
-        $conn=Database::connect();
+        $conn=(new Database()) ->connect();
         $result=$conn->query("SELECT * FROM Products");
-        return $result->fetch_all(MYSQLI_ASSOC);
+        return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function data_products()

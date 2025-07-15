@@ -4,16 +4,83 @@ require_once 'core/database.php';
     {
         public static function EODS()
         {
-            $conn=Database::connect();
+            $conn=(new Database())->connect();
             $result=$conn->query("SELECT * FROM End_Of_Day_Summary ");
-            return $result->fetch_all(MYSQLI_ASSOC);
+            return $result->fetchAll(PDO::FETCH_ASSOC);
         }
 
         public static function Inventories_Status()
         {
-            $conn=Database::connect();
+            $conn=(new Database())->connect();
             $result=$conn->query("SELECT * FROM Inventory_Status");
-            return $result->fetch_all(MYSQLI_ASSOC);
+            return $result->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public static function Invoices_Total_Sales()
+        {
+            try
+            {
+                $conn=(new Database())->connect();
+                $result=$conn->query("SELECT * FROM Invoices_Total_Sales ");
+                return $result->fetchAll(PDO::FETCH_ASSOC);
+            }
+            catch(PDOException $e)
+            {
+                error_log("Database Connection Error: ". $e->getMessage());
+            }
+        }
+
+        public static function Payment_Breakdown()
+        {
+            $conn=(new Database())->connect();
+            $result=$conn->query("SELECT * FROM `Payment_Breakdown` ");
+            return $result->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function Payment()
+        {
+            $report=self::Payment_Breakdown();
+            if(!empty($report))
+            {
+                foreach($report as $row)
+                {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($row['invoice_id']?? '0'). "</td>";
+                    echo "<td>" . htmlspecialchars($row['customer_name']?? '0'). "</td>";
+                    echo "<td>" . htmlspecialchars($row['payment_method_id']?? '0'). "</td>";
+                    echo "<td>" . htmlspecialchars($row['amount_paid']?? '0'). "</td>";
+                    echo "<td>" . htmlspecialchars($row['payment_date']?? '0'). "</td>";
+                    echo "<td>" . htmlspecialchars($row['username']?? '0'). "</td>";
+                    echo "</tr>";
+                }
+            }
+
+        }
+
+        public function Invoice()
+        {
+            $report=self::Invoices_Total_Sales();
+            if(!empty($report))
+            {
+                foreach($report as $row)
+                {
+                    echo "<tr>";
+                    echo "<td>". htmlspecialchars($row['sales_id']). "</td>";
+                    echo "<td>". htmlspecialchars($row['invoice_id' ]). "</td>";
+                    echo "<td>". htmlspecialchars($row['invoice_date']). "</td>";
+                    echo "<td>". htmlspecialchars($row['customer_name' ]). "</td>";
+                    echo "<td>". htmlspecialchars($row['username']). "</td>";
+                    echo "<td>". htmlspecialchars($row['calculated_total_amount']). "</td>";
+                    echo "<td>". htmlspecialchars($row['total_paid' ]). "</td>";
+                    echo "<td>". htmlspecialchars($row['balance' ]). "</td>";
+                    echo "<td>". htmlspecialchars($row['Payment_Status' ]). "</td>";
+                    echo "</tr>";
+                }
+            }
+            else
+            {
+                echo "error";
+            }
         }
 
         public  function Summary()

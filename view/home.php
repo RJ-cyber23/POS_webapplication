@@ -45,7 +45,7 @@
                             <div class="sb-sidenav-menu-heading">Core</div>
                             <a class="nav-link" href="index.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard
+                                Dashboard Reports
                             </a>
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -161,7 +161,7 @@
                         </div>
                         <!--End of day summary-->
 
-                            <div class="card mb-4">
+                        <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
                               Inventories Status
@@ -187,6 +187,94 @@
                                          $conn=new ViewDB();
                                          $conn->inventories();
                                          ?>
+                                        </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                              Invoices Total Sales
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                     <table class="table table-bordered table-striped">
+                                         <thead class="table-dark">
+                                            <tr>
+                                                <th> sales_id </th>
+                                                <th> invoice_id </th>
+                                                <th>invoice_date </th>
+                                                <th>customer_name </th>
+                                                <th>username</th>
+                                                <th>calculated_total_amount </th>
+                                                <th>total_paid </th>
+                                                <th>balance </th>
+                                                <th>Payment_Status</th>
+
+                                            </tr>
+                                        </thead>       
+                                        <tbody>
+                                            <?php $conn=new ViewDB();
+                                                $conn->Invoice();
+                                            ?>
+                                        </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Payment Breakdown
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                     <table class="table table-bordered table-striped">
+                                         <thead class="table-dark">
+                                            <tr>
+                                                <th> invoice_id</th>
+                                                <th> customer_name </th>
+                                                <th>payment_method_id </th>
+                                                <th>amount_paid </th>
+                                                <th>payment_date</th>
+                                                <th>username </th>
+                                            </tr>
+                                        </thead>       
+                                        <tbody>
+                                            <?php $conn=new ViewDB();
+                                                $conn->Payment();
+                                            ?>
+                                        </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                               Profit For Product
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                     <table class="table table-bordered table-striped">
+                                         <thead class="table-dark">
+                                            <tr>
+                                                <th> product_id</th>
+                                                <th> product_name </th>
+                                                <th>cost_price </th>
+                                                <th>base_price </th>
+                                                <th>ordered_quantity</th>
+                                                <th>sold_quantity </th>
+                                                <th>total_cost </th>
+                                                <th>expected_sales </th>
+                                                <th>total_profit </th>
+                                            </tr>
+                                        </thead>       
+                                        <tbody>
+                                            <?php $conn=new View1DB();
+                                                $conn->Profit();
+                                            ?>
                                         </tbody>
                                 </table>
                             </div>

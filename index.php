@@ -7,6 +7,7 @@ require_once 'core/database.php';
 require_once 'Model/products.php';
 require_once 'controller/HomeController.php';
 require_once 'Model/viewDB.php';
+require_once 'Model/view1DB.php';
 
 
  
