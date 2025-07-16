@@ -9,12 +9,13 @@
         <title>Dashboard-Home</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="Style/bootstrap.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.php">Point Of Sale</a>
+            <a class="navbar-brand ps-3" href="index.php?page=home">Point Of Sale</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -43,11 +44,35 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="index.php">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard Reports
-                            </a>
+                                <a class="nav-link" href="index.php">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                    Dashboard Reports
+                                </a>
+
+                            <div class="sb-sidenav-menu-heading">Reports</div>
+
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseReport" aria-expanded="false" aria-controls="collapseLayouts">
+                               <div class="sb-nav-link-icon"><i class="bi bi-graph-up-arrow" style="color: gray;"></i></i></div>
+                                Summary Reports
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+
+                                
+                                <div class="collapse" id="collapseReport" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="index.php?page=End_of_Day">End of Day Summary</a>
+                                    <a class="nav-link" href="">Inventory Status</a>
+                                    <a class="nav-link" href="">Invoice Total Sales</a>
+                                    <a class="nav-link" href="">Payment Breakdown</a>
+                                    <a class="nav-link" href="">Profit For Products</a>
+                                    <a class="nav-link" href="">Purchase Order Summary</a>
+                                    <a class="nav-link" href="">Sales Summary</a>
+                                </nav>
+                                </div>
+
+                                
                             <div class="sb-sidenav-menu-heading">Interface</div>
+                            
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Layouts
@@ -298,6 +323,8 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="assets/js/scripts.js"></script>
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="assets/demo/chart-area-demo.js"></script>
         <script src="assets/demo/chart-bar-demo.js"></script>
