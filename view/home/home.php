@@ -66,8 +66,8 @@
                                     <a class="nav-link" href="index.php?page=Invoices Total Sales">Invoice Total Sales</a>
                                     <a class="nav-link" href="index.php?page=Payment Breakdown">Payment Breakdown</a>
                                     <a class="nav-link" href="index.php?page=Profit for Products">Profit For Products</a>
-                                    <a class="nav-link" href="">Purchase Order Summary</a>
-                                    <a class="nav-link" href="">Sales Summary</a>
+                                    <a class="nav-link" href="index.php?page=Purchase_Orders_Summary">Purchase Order Summary</a>
+                                    <a class="nav-link" href="index.php?page=Sales_Summary">Sales Summary</a>
                                 </nav>
                                 </div>
 

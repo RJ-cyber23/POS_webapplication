@@ -30,6 +30,14 @@ class HomeController
     {
         require_once 'view/Reports/Profit_for_products.php';
     }
+    public function Purchase_Orders_Summary()
+    {
+        require_once 'view/Reports/Purchase_Orders_Summary.php';
+    }
+    public function Sales_Summary()
+    {
+        require_once 'view/Reports/Sales_Summary.php';
+    }
 }
 
 ?>

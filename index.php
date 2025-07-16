@@ -16,7 +16,13 @@ $page = $_GET['page'] ?? 'home';
 
 switch ($page) 
 {
-    case 'Profit for Products';
+    case 'Sales_Summary':
+        $controller->Sales_Summary();
+        break;
+    case 'Purchase_Orders_Summary':
+        $controller->Purchase_Orders_Summary();
+        break;
+    case 'Profit for Products':
         $controller->Profit_for_Products();
     break;
     case 'Payment Breakdown':

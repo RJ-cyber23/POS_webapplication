@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Payment Breakdown</title>
+        <title>Purchase Orders Summary</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="Style/bootstrap.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
@@ -60,7 +60,7 @@
                                 
                                 <div class="collapse" id="collapseReport" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="index.php?page=End_of_Day">End of Day Summary</a>
+                                   <a class="nav-link" href="index.php?page=End_of_Day">End of Day Summary</a>
                                     <a class="nav-link" href="index.php?page=Inventory Status">Inventory Status</a>
                                     <a class="nav-link" href="index.php?page=Invoices Total Sales">Invoice Total Sales</a>
                                     <a class="nav-link" href="index.php?page=Payment Breakdown">Payment Breakdown</a>
@@ -131,9 +131,9 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Payment</h1>
+                        <h1 class="mt-4">Purchase Orders Summary</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Payment Breakdown Reports</li>
+                            <li class="breadcrumb-item active">Purchase Orders Summary Reports</li>
                         </ol>
 
                          <div class="row">
@@ -157,27 +157,29 @@
                             </div>
 
                         <!--End of day summary-->
-                        <div class="card mb-4">
+                       <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                Payment Breakdown
+                            Purchase Orders Summary
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
                                      <table class="table table-bordered table-striped">
                                          <thead class="table-dark">
                                             <tr>
-                                                <th> invoice_id</th>
-                                                <th> customer_name </th>
-                                                <th>payment_method_id </th>
-                                                <th>amount_paid </th>
-                                                <th>payment_date</th>
-                                                <th>username </th>
+                                                <th> Purchase_Orders_Items_id</th>
+                                                <th> supplier_name </th>
+                                                <th>product_name </th>
+                                                <th>ordered_quantity </th>
+                                                <th>cost_price</th>
+                                                <th>Subtotal </th>
+                                                <th>order_date </th>
+                                                <th>status </th>
                                             </tr>
                                         </thead>       
                                         <tbody>
-                                            <?php $conn=new ViewDB();
-                                                $conn->Payment();
+                                            <?php $conn=new View1DB();
+                                                $conn->Purchase();
                                             ?>
                                         </tbody>
                                 </table>
