@@ -4,12 +4,31 @@ class HomeController
     public function Index() 
     {
         $product=products::getAll();
-        require_once 'view/home.php';
+        require_once 'view/home/home.php';
     }
     public function End_of_Day()
     {
         $report=ViewDB::EODS();
-        require_once 'view/End_of_Day.php';
+        require_once 'view/Reports/End_of_Day.php';
+        return;
+    }
+    public function Inventory_Status()
+    {
+        require_once 'view/Reports/Inventory_Status.php';
+        return;
+    }
+    public function Invoice_Status()
+    {
+        require_once 'view/Reports/Invoices_Total_Sales.php';
+        return;
+    }
+    public function Payment_Breakdown()
+    {
+        require_once 'view/Reports/Payment_Breakdown.php';
+    }
+    public function Profit_for_Products()
+    {
+        require_once 'view/Reports/Profit_for_products.php';
     }
 }
 

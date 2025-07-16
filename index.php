@@ -14,11 +14,25 @@ $controller = new HomeController();
 // Get the page parameter (defaults to 'home' if not set)
 $page = $_GET['page'] ?? 'home';
 
-switch ($page) {
+switch ($page) 
+{
+    case 'Profit for Products';
+        $controller->Profit_for_Products();
+    break;
+    case 'Payment Breakdown':
+        $controller->Payment_Breakdown();
+        break;
+    case 'Invoices Total Sales':
+        $controller->Invoice_Status();
+        break;
+    case 'Inventory Status':
+        $controller->Inventory_Status();
+        break;
+
     case 'End_of_Day':
         $controller->End_of_Day();
         break;
-    case 'home':
+    case 'home': 
     default:
         $controller->Index();
         break;

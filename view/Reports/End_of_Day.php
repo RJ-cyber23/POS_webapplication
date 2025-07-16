@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard-Home</title>
+        <title>EOD</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="Style/bootstrap.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
@@ -60,11 +60,11 @@
                                 
                                 <div class="collapse" id="collapseReport" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="">End of Day Summary</a>
-                                    <a class="nav-link" href="">Inventory Status</a>
-                                    <a class="nav-link" href="">Invoice Total Sales</a>
-                                    <a class="nav-link" href="">Payment Breakdown</a>
-                                    <a class="nav-link" href="">Profit For Products</a>
+                                     <a class="nav-link" href="index.php?page=End_of_Day">End of Day Summary</a>
+                                    <a class="nav-link" href="index.php?page=Inventory Status">Inventory Status</a>
+                                    <a class="nav-link" href="index.php?page=Invoices Total Sales">Invoice Total Sales</a>
+                                    <a class="nav-link" href="index.php?page=Payment Breakdown">Payment Breakdown</a>
+                                    <a class="nav-link" href="index.php?page=Profit for Products">Profit For Products</a>
                                     <a class="nav-link" href="">Purchase Order Summary</a>
                                     <a class="nav-link" href="">Sales Summary</a>
                                 </nav>
@@ -131,9 +131,9 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
+                        <h1 class="mt-4">EOD</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard Reports</li>
+                            <li class="breadcrumb-item active">End of Day Summary Reports</li>
                         </ol>
 
                          <div class="row">
@@ -184,128 +184,7 @@
                                 </table>
                             </div>
                         </div>
-                        <!--End of day summary-->
-
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                              Inventories Status
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                     <table class="table table-bordered table-striped">
-                                         <thead class="table-dark">
-                                            <tr>
-                                                <th> product_id </th>
-                                                <th> product_name </th>
-                                                <th>size </th>
-                                                <th>color </th>
-                                                <th>quantity_stock_in</th>
-                                                <th>sales_stock_out </th>
-                                                <th>quantity_on_hand </th>
-                                                <th>last_restock_date </th>
-                                            </tr>
-                                        </thead>       
-                                        <tbody>
-                                            
-                                         <?php
-                                         $conn=new ViewDB();
-                                         $conn->inventories();
-                                         ?>
-                                        </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                              Invoices Total Sales
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                     <table class="table table-bordered table-striped">
-                                         <thead class="table-dark">
-                                            <tr>
-                                                <th> sales_id </th>
-                                                <th> invoice_id </th>
-                                                <th>invoice_date </th>
-                                                <th>customer_name </th>
-                                                <th>username</th>
-                                                <th>calculated_total_amount </th>
-                                                <th>total_paid </th>
-                                                <th>balance </th>
-                                                <th>Payment_Status</th>
-
-                                            </tr>
-                                        </thead>       
-                                        <tbody>
-                                            <?php $conn=new ViewDB();
-                                                $conn->Invoice();
-                                            ?>
-                                        </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                Payment Breakdown
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                     <table class="table table-bordered table-striped">
-                                         <thead class="table-dark">
-                                            <tr>
-                                                <th> invoice_id</th>
-                                                <th> customer_name </th>
-                                                <th>payment_method_id </th>
-                                                <th>amount_paid </th>
-                                                <th>payment_date</th>
-                                                <th>username </th>
-                                            </tr>
-                                        </thead>       
-                                        <tbody>
-                                            <?php $conn=new ViewDB();
-                                                $conn->Payment();
-                                            ?>
-                                        </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                               Profit For Product
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                     <table class="table table-bordered table-striped">
-                                         <thead class="table-dark">
-                                            <tr>
-                                                <th> product_id</th>
-                                                <th> product_name </th>
-                                                <th>cost_price </th>
-                                                <th>base_price </th>
-                                                <th>ordered_quantity</th>
-                                                <th>sold_quantity </th>
-                                                <th>total_cost </th>
-                                                <th>expected_sales </th>
-                                                <th>total_profit </th>
-                                            </tr>
-                                        </thead>       
-                                        <tbody>
-                                            <?php $conn=new View1DB();
-                                                $conn->Profit();
-                                            ?>
-                                        </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                    </div>
+                  
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
