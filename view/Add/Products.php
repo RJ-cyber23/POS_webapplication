@@ -71,6 +71,7 @@
                                 </div>
 
 
+
                             <div class="sb-sidenav-menu-heading">Reports</div>
 
                                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseReport" aria-expanded="false" aria-controls="collapseLayouts">
@@ -150,206 +151,85 @@
                     </div>
                 </nav>
             </div>
-
             <div id="layoutSidenav_content">
                 <main>
+                    <?php if (!empty($success)) echo "<div class='alert alert-success'>$success</div>"; ?>
+                    <?php if (!empty($error)) echo "<div class='alert alert-danger'>$error</div>"; ?>
 
- <div class="container-solid py-2 mb-4 bg-light rounded-5 ">
-        <div class="p-5 mb-4 lc-block">
-            <div class="lc-block">
-                <div editable="rich">
-                    <h2 class="fw-bolder display-3">Welcome to Our POS System</h2>
-                </div>
-            </div>
-            <div class="lc-block col-md-8">
-                <div editable="rich">
-                    <p class="lead">
-                     Manage your products, track inventory, and streamline your sales process all in one place. Fast, secure, and easy to use.        
-                </p>
-                </div>
-            </div>
-            <div class="lc-block">
-                <a class="btn btn-primary" href="index.php?page=Add Product" role="button">Add new Product</a>
-            </div>
-        </div>
-    </div>
-
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard Reports</li>
-                        </ol>
-
-                         <div class="row">
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-area me-1"></i>
-                                        Area Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                <div class="container-solid py-2 mb-4 bg-light rounded-5 ">
+                        <div class="p-5 mb-4 lc-block">
+                            <div class="lc-block">
+                                <div editable="rich">
+                                    <h2 class="fw-bolder display-3">Manage Your Products with Ease</h2>
                                 </div>
                             </div>
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar me-1"></i>
-                                        Bar Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                            <div class="lc-block col-md-8">
+                                <div editable="rich">
+                                    <p class="lead">Easily add, update, and track all your products in one place. Streamline your inventory process with our intuitive POS system interface.
+                                    </p>
                                 </div>
                             </div>
-
-                        <!--End of day summary-->
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                End of Day Summary 
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                     <table class="table table-bordered table-striped">
-                                         <thead class="table-dark">
-                                            <tr>
-                                                <th> invoice_date </th>
-                                                <th> total_sales </th>
-                                                <th>total_transaction </th>
-                                                <th>total_items_sold </th>
-                                                <th>total_cash</th>
-                                                <th>total_profit </th>
-                                            </tr>
-                                        </thead>       
-                                        <tbody>
-                                            
-                                           <?php $conn=new ViewDB();
-                                                $conn->Summary();
-                                           ?>
-                                        </tbody>
-                                </table>
+                            <div class="lc-block">
+                                <a class="btn btn-primary" href="#formaction" role="button">Add new Product</a>
                             </div>
                         </div>
-                        <!--End of day summary-->
-
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                              Inventories Status
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                     <table class="table table-bordered table-striped">
-                                         <thead class="table-dark">
-                                            <tr>
-                                                <th> product_id </th>
-                                                <th> product_name </th>
-                                                <th>size </th>
-                                                <th>color </th>
-                                                <th>quantity_stock_in</th>
-                                                <th>sales_stock_out </th>
-                                                <th>quantity_on_hand </th>
-                                                <th>last_restock_date </th>
-                                            </tr>
-                                        </thead>       
-                                        <tbody>
-                                            
-                                         <?php
-                                         $conn=new ViewDB();
-                                         $conn->inventories();
-                                         ?>
-                                        </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                              Invoices Total Sales
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                     <table class="table table-bordered table-striped">
-                                         <thead class="table-dark">
-                                            <tr>
-                                                <th> sales_id </th>
-                                                <th> invoice_id </th>
-                                                <th>invoice_date </th>
-                                                <th>customer_name </th>
-                                                <th>username</th>
-                                                <th>calculated_total_amount </th>
-                                                <th>total_paid </th>
-                                                <th>balance </th>
-                                                <th>Payment_Status</th>
-
-                                            </tr>
-                                        </thead>       
-                                        <tbody>
-                                            <?php $conn=new ViewDB();
-                                                $conn->Invoice();
-                                            ?>
-                                        </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                Payment Breakdown
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                     <table class="table table-bordered table-striped">
-                                         <thead class="table-dark">
-                                            <tr>
-                                                <th> invoice_id</th>
-                                                <th> customer_name </th>
-                                                <th>payment_method_id </th>
-                                                <th>amount_paid </th>
-                                                <th>payment_date</th>
-                                                <th>username </th>
-                                            </tr>
-                                        </thead>       
-                                        <tbody>
-                                            <?php $conn=new ViewDB();
-                                                $conn->Payment();
-                                            ?>
-                                        </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                               Profit For Products
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                     <table class="table table-bordered table-striped">
-                                         <thead class="table-dark">
-                                            <tr>
-                                                <th> product_id</th>
-                                                <th> product_name </th>
-                                                <th>cost_price </th>
-                                                <th>base_price </th>
-                                                <th>ordered_quantity</th>
-                                                <th>sold_quantity </th>
-                                                <th>total_cost </th>
-                                                <th>expected_sales </th>
-                                                <th>total_profit </th>
-                                            </tr>
-                                        </thead>       
-                                        <tbody>
-                                            <?php $conn=new View1DB();
-                                                $conn->Profit();
-                                            ?>
-                                        </tbody>
-                                </table>
-                            </div>
-                        </div>
-
                     </div>
+
+
+            <div class="container-solid d-flex justify-content-center mt-4">
+                <div style="max-width: 800px; width: 100%;">
+                    <form method="POST" id="formaction">
+                    <div class="row mb-2">
+
+                        <div class="col">
+                        <label for="product_name" class="form-label">Product Name</label>
+                        <input type="text" class="form-control form-control-sm" name="product_name" id="product_name">
+                        </div>
+
+                        <div class="col">
+                        <label for="product_code" class="form-label">Product Code</label>
+                        <input type="text" class="form-control form-control-sm" name="product_code" id="product_code">
+                        </div>
+                    </div>
+
+                    <div class="row mb-2">
+                         <div class="col">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="2"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2">
+                        <div class="col">
+                            <label for="category" class="form-label">Category ID</label>
+                            <select class="form-select" name="category_id" id="category" required>
+                            <option value="" selected disabled>Select Category</option>
+                            <?php foreach ($categories as $category): ?>
+                            <option value="<?= htmlspecialchars($category['category_id']) ?>">
+                            <?= htmlspecialchars($category['category_name']) ?>
+                            </option>
+                            <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div class="col">
+                            <label for="brand" class="form-label">Brand ID</label>
+                            <input type="number" class="form-control" id="brand" name="brand_id" required>
+                        </div>
+
+                        <div class="col">
+                                <label for="supplier" class="form-label">Supplier ID</label>
+                                <input type="number" class="form-control" id="supplier" name="supplier_id" required>
+                        </div>
+                    </div>
+                    <!-- More rows and inputs here -->
+
+                    <button type="submit" name="add_product" class="btn btn-primary btn-md">Add Product</button>
+                    </form>
+                </div>
+            </div>
+
+
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">

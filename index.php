@@ -7,15 +7,24 @@ require_once 'Model/products.php';
 require_once 'controller/HomeController.php';
 require_once 'Model/viewDB.php';
 require_once 'Model/view1DB.php';
+require_once 'controller/AddController.php';
 
 // Instantiate the controller BEFORE using it
 $controller = new HomeController();
+$add=new AddController();
 
 // Get the page parameter (defaults to 'home' if not set)
 $page = $_GET['page'] ?? 'home';
 
 switch ($page) 
 {
+    case 'Add Product':
+        $add->ProductsAdd();
+        break;
+
+    case 'Chart': 
+        $controller->Chart();
+        break;
     case 'Sales_Summary':
         $controller->Sales_Summary();
         break;

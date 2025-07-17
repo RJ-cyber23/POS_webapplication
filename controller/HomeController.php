@@ -38,6 +38,10 @@ class HomeController
     {
         require_once 'view/Reports/Sales_Summary.php';
     }
+    public function Chart()
+    {
+        require_once 'view/home/charts.php';
+    }
 }
 
 ?>
