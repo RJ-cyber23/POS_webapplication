@@ -153,10 +153,18 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    <?php if (!empty($success)) echo "<div class='alert alert-success'>$success</div>"; ?>
-                    <?php if (!empty($error)) echo "<div class='alert alert-danger'>$error</div>"; ?>
+<!--Error message-->
+                <?php if (isset($success)) : ?>
+                <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
+                <?php endif; ?>
 
-                <div class="container-solid py-2 mb-4 bg-light rounded-5 ">
+                <?php if (isset($error)) : ?>
+                    <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
+                <?php endif; ?>
+<!--Error message end here-->
+
+<!--hero section-->
+                <div class="container-solid py-2 mb-4  rounded-5 ">
                         <div class="p-5 mb-4 lc-block">
                             <div class="lc-block">
                                 <div editable="rich">
@@ -174,12 +182,22 @@
                             </div>
                         </div>
                     </div>
+<!--her section-->
 
 
+<!--form handling-->
             <div class="container-solid d-flex justify-content-center mt-4">
                 <div style="max-width: 800px; width: 100%;">
+<!--Request Method as POST-->
                     <form method="POST" id="formaction">
                     <div class="row mb-2">
+                        
+                        <div class="col">
+
+                            <label for="product_name" class="form-label">Product ID</label>
+                            <input type="text" class="form-control form-control-sm" name="product_name" id="product_name">
+                            
+                        </div>
 
                         <div class="col">
                         <label for="product_name" class="form-label">Product Name</label>
@@ -203,10 +221,15 @@
                         <div class="col">
                             <label for="category" class="form-label">Category ID</label>
                             <select class="form-select" name="category_id" id="category" required>
+
                             <option value="" selected disabled>Select Category</option>
+
                             <?php foreach ($categories as $category): ?>
+
                             <option value="<?= htmlspecialchars($category['category_id']) ?>">
+
                             <?= htmlspecialchars($category['category_name']) ?>
+
                             </option>
                             <?php endforeach; ?>
                             </select>
@@ -214,12 +237,37 @@
 
                         <div class="col">
                             <label for="brand" class="form-label">Brand ID</label>
-                            <input type="number" class="form-control" id="brand" name="brand_id" required>
+                            <select class="form-select" name="brand_id" id="brand" required>
+
+                            <option value="" selected disabled>Select Brands</option>
+
+                            <?php foreach ($brands as $brand): ?>
+
+                            <option value="<?= htmlspecialchars($brand['brand_id']) ?>">
+
+                            <?= htmlspecialchars($brand['brand_name']) ?>
+
+                            </option>
+                            <?php endforeach; ?>
+                            </select>
                         </div>
 
                         <div class="col">
                                 <label for="supplier" class="form-label">Supplier ID</label>
-                                <input type="number" class="form-control" id="supplier" name="supplier_id" required>
+                                <select class="form-select" name="supplier_id" id="Suppliers" required>
+
+                                <option value="" selected disabled>Select Suppliers</option>
+
+                                <?php foreach($suppliers as $supplier): ?>
+
+                                    <option value="<?=htmlspecialchars($supplier['supplier_id'])?>">
+                                        <?=htmlspecialchars($supplier['supplier_name'])?>
+                                    </option>
+
+                                <?php endforeach?>
+                                
+
+                                </select>
                         </div>
                     </div>
                     <!-- More rows and inputs here -->
@@ -228,7 +276,7 @@
                     </form>
                 </div>
             </div>
-
+<!--form handling end here-->
 
                 </main>
                 <footer class="py-4 bg-light mt-auto">

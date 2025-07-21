@@ -5,7 +5,7 @@ class Database
     private $user="root";
     private $password="";
     private $database_name="MyPOS";
-    public $connect;
+    private $connect;
 
     public function connect()
     {

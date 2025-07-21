@@ -7,36 +7,61 @@ class AddController
 {
     public function ProductsAdd()
     {
-        $success = null;
-        $error = null;
+        session_start();
+        $success = $_SESSION['success'] ?? null;
+        $error = $_SESSION['error'] ?? null;
+        unset($_SESSION['success'], $_SESSION['error']); 
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_product'])) {
-            $productModel = new AddProducts();
-            $result = $productModel->addProduct($_POST);
+            $result = (new AddProducts())->addProduct($_POST);
 
             if ($result === true) {
-                $success = "Product added successfully!";
+                $_SESSION['success'] = "Product added successfully!";
             } else {
-                $error = $result; // Error message returned by the model
+                $_SESSION['error'] = $result;
             }
+            header("Location: " . $_SERVER['REQUEST_URI']);
+            exit;
         }
-       $categories = $this->getAll_Categories();
-
-        // Make $success and $error available in the view
+        
+        $categories = $this->getAll_Categories();
+        $brands=$this->getAll_Brands();
+        $suppliers=$this->getAll_Suppliers();
         require 'view/Add/Products.php';
     }
-
-    public function getAll_Categories()
+    public function getAll_Suppliers()
     {
-        $conn=new Database();
-        $reult=$conn->connect();
-
-        if($reult)
+        $result=(new Database())->connect();
+        if($result)
         {
-            $stmt=$reult->query("SELECT category_id, category_name from Categories");
+            $stmt=$result->query("SELECT supplier_id, supplier_name FROM Suppliers ");
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
         return [];
     }
+
+    public function getAll_Brands()
+    {
+        $result=(new Database())->connect();
+        if($result)
+        {
+            $stmt=$result->query("SELECT brand_id, brand_name from Brand");
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+        return [];
+    }
+
+    public function getAll_Categories()
+    {
+        $result = (new Database())->connect();
+
+        if ($result) {
+            $stmt = $result->query("SELECT category_id, category_name FROM Categories");
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+        return [];
+    }
+
+ 
 }
 ?>

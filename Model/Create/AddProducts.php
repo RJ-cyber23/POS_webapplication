@@ -5,6 +5,7 @@ class AddProducts
 {
     public function addProduct($data)
     {
+        $product_id=$data['product_id'];
         $product_name = $data['product_name'];
         $product_code = $data['product_code'];
         $description = $data['description'];
@@ -19,9 +20,9 @@ class AddProducts
 
         if ($conn) {
             try {
-                $stmt = $conn->prepare("INSERT INTO Products (product_name, product_code, description, category_id, brand_id, supplier_id)
-                                        VALUES (:product_name, :product_code, :description, :category_id, :brand_id, :supplier_id)");
-
+                $stmt = $conn->prepare("INSERT INTO Products (product_id, product_name, product_code, description, category_id, brand_id, supplier_id)
+                                        VALUES (:product_id, :product_name, :product_code, :description, :category_id, :brand_id, :supplier_id)");
+                $stmt->bindParam(':product_id', $product_id);
                 $stmt->bindParam(':product_name', $product_name);
                 $stmt->bindParam(':product_code', $product_code);
                 $stmt->bindParam(':description', $description);
