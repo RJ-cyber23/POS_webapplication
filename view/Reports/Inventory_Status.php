@@ -167,14 +167,12 @@
                                      <table class="table table-bordered table-striped">
                                          <thead class="table-dark">
                                             <tr>
-                                                <th> product_id </th>
+                                                <th> product_id 	 	 	 	 	 	 </th>
                                                 <th> product_name </th>
                                                 <th>size </th>
                                                 <th>color </th>
-                                                <th>quantity_stock_in</th>
-                                                <th>sales_stock_out </th>
-                                                <th>quantity_on_hand </th>
-                                                <th>last_restock_date </th>
+                                                <th>current_stock_quantity</th>
+                                                <th>restock_level </th>
                                             </tr>
                                         </thead>       
                                         <tbody>

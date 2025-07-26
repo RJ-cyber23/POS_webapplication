@@ -55,10 +55,10 @@ require_once 'core/database.php';
                     echo "<td>". htmlspecialchars($row['supplier_name']). "</td>";
                     echo "<td>". htmlspecialchars($row['product_name']). "</td>";
                     echo "<td>". htmlspecialchars($row['ordered_quantity']). "</td>";
-                    echo "<td>". htmlspecialchars($row['cost_price']). "</td>";
-                    echo "<td>". htmlspecialchars($row['Subtotal']). "</td>";
+                    echo "<td>". htmlspecialchars($row['purchase_cost_price']). "</td>";
+                    echo "<td>". htmlspecialchars($row['subtotal']). "</td>";
                     echo "<td>". htmlspecialchars($row['order_date']). "</td>";
-                    echo "<td>". htmlspecialchars($row['status']). "</td>";
+                    echo "<td>". htmlspecialchars($row['status_name']). "</td>";
                     echo "</tr>";
                 }
             }

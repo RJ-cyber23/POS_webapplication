@@ -169,8 +169,8 @@
                                             <tr>
                                                 <th> invoice_id</th>
                                                 <th> customer_name </th>
-                                                <th>payment_method_id </th>
-                                                <th>amount_paid </th>
+                                                <th>payment_method</th>
+                                                <th>amount_tendered</th>
                                                 <th>payment_date</th>
                                                 <th>username </th>
                                             </tr>

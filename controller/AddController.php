@@ -12,7 +12,8 @@ class AddController
         $error = $_SESSION['error'] ?? null;
         unset($_SESSION['success'], $_SESSION['error']); 
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_product'])) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_product'])) 
+        {
             $result = (new AddProducts())->addProduct($_POST);
 
             if ($result === true) {

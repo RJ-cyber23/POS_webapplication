@@ -167,14 +167,13 @@
                                      <table class="table table-bordered table-striped">
                                          <thead class="table-dark">
                                             <tr>
-                                                <th> sales_id </th>
-                                                <th> invoice_id </th>
+                                                <th> invoice_id</th>
                                                 <th>invoice_date </th>
                                                 <th>customer_name </th>
                                                 <th>username</th>
-                                                <th>calculated_total_amount </th>
-                                                <th>total_paid </th>
-                                                <th>balance </th>
+                                                <th>Calculated_Total_Amount </th>
+                                                <th>Total_Paid </th>
+                                                <th>Balance </th>
                                                 <th>Payment_Status</th>
 
                                             </tr>
