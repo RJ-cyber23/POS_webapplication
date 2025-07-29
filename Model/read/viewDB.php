@@ -114,6 +114,7 @@ require_once 'core/database.php';
                     echo "<td>" . htmlspecialchars($row['size']?? 'null'). "</td>";
                     echo "<td>" . htmlspecialchars($row['color']?? 'null'). "</td>";
                     echo "<td>" . htmlspecialchars($row['current_stock_quantity']?? 'null'). "</td>";
+                    echo "<td>" . htmlspecialchars($row['quantity_stock_out']?? 'null'). "</td>";
                     echo "<td>" . htmlspecialchars($row['restock_level'] ?? 'null'). "</td>";
                     echo "</tr>";
                 }

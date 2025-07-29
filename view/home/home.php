@@ -49,7 +49,7 @@
                                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                     Dashboard Reports
                                 </a>
-
+<!--Create-->
                             <div class="sb-sidenav-menu-heading ">Add</div>
                             <a class="nav-link collapsed bg-success rounded-4" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAdd" aria-expanded="false" aria-controls="collapseLayouts">
                                <div class="sb-nav-link-icon"><i class="bi bi-basket3-fill text-white "></i></div>
@@ -59,9 +59,11 @@
 
                                 
                                 <div class="collapse" id="collapseAdd" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+
+
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="index.php?page=Add Product"><i class="bi bi-cart4"></i>Add Products</a>
-                                    <a class="nav-link" href="index.php?page=Inventory Status">Inventory Status</a>
+                                    <a class="nav-link" href="index.php?page=Add Product"><i class="bi bi-cart4 me-2"></i>Add Products</a>
+                                    <a class="nav-link" href="index.php?page=AddVariants">Add Products Variants</a>
                                     <a class="nav-link" href="index.php?page=Invoices Total Sales">Invoice Total Sales</a>
                                     <a class="nav-link" href="index.php?page=Payment Breakdown">Payment Breakdown</a>
                                     <a class="nav-link" href="index.php?page=Profit for Products">Profit For Products</a>
@@ -69,7 +71,7 @@
                                     <a class="nav-link" href="index.php?page=Sales_Summary">Sales Summary</a>
                                 </nav>
                                 </div>
-
+<!--End create-->
 
                             <div class="sb-sidenav-menu-heading">Reports</div>
 

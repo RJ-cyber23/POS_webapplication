@@ -3,7 +3,7 @@
 use LDAP\Result;
 require_once 'Model/Create/AddProducts.php';
 
-class AddController
+class AddProductsController
 {
     public function ProductsAdd()
     {
@@ -24,12 +24,14 @@ class AddController
             header("Location: " . $_SERVER['REQUEST_URI']);
             exit;
         }
-        
+
         $categories = $this->getAll_Categories();
         $brands=$this->getAll_Brands();
         $suppliers=$this->getAll_Suppliers();
         require 'view/Add/Products.php';
     }
+
+    
     public function getAll_Suppliers()
     {
         $result=(new Database())->connect();

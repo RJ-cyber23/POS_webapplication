@@ -55,7 +55,7 @@
                                <div class="sb-nav-link-icon"><i class="bi bi-basket3-fill text-white "></i></div>
                                 Basket
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
+                            </a>
 
                                 
                                 <div class="collapse" id="collapseAdd" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
@@ -164,32 +164,21 @@
 <!--Error message end here-->
 
 <!--hero section-->
-                <div class="container-solid py-2 mb-4  rounded-5 ">
+                <div class="container-solid py- rounded-5 ">
                         <div class="p-5 mb-4 lc-block">
                             <div class="lc-block">
                                 <div editable="rich">
-                                    <h2 class="fw-bolder display-3">Manage Your Products with Ease</h2>
+                                    <h3><i class="bi bi-cart me-2 fs-1 "></i>Add Products</h3>
                                 </div>
                             </div>
-                            <div class="lc-block col-md-8">
-                                <div editable="rich">
-                                    <p class="lead">Easily add, update, and track all your products in one place. Streamline your inventory process with our intuitive POS system interface.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="lc-block">
-                                <a class="btn btn-primary" href="#formaction" role="button">Add new Product</a>
-                            </div>
-                        </div>
-                    </div>
 <!--her section-->
 
 
 <!--form handling-->
             <div class="container-solid d-flex justify-content-center mt-4">
                 <div style="max-width: 800px; width: 100%;">
-<!--Request Method as POST-->
-                    <form method="POST" id="formaction">
+
+                    <form method="POST" id="formaction"><!--Request Method as POST-->
                     <div class="row mb-2">
                         
                         <div class="col">
@@ -265,8 +254,6 @@
                                     </option>
 
                                 <?php endforeach?>
-                                
-
                                 </select>
                         </div>
                     </div>
@@ -276,6 +263,13 @@
                     </form>
                 </div>
             </div>
+
+<!--End line for Add Products-->
+
+<!--Add variants-->
+
+              
+<!--End of Add Variant-->
 <!--form handling end here-->
 
                 </main>

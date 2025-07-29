@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Inventory</title>
+        <title>Dashboard-Home</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="Style/bootstrap.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
@@ -15,7 +15,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.php">Point Of Sale</a>
+            <a class="navbar-brand ps-3" href="index.php?page=home">Point Of Sale</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -28,6 +28,7 @@
             <!-- Navbar-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
+                    <!--for profile-->
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#!">Settings</a></li>
@@ -44,15 +45,37 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                                <a class="nav-link" href="index.php">
+                                <a class="nav-link" href="index.php?page=home">
                                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                     Dashboard Reports
                                 </a>
 
+                            <div class="sb-sidenav-menu-heading ">Add</div>
+                            <a class="nav-link collapsed bg-success rounded-4" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAdd" aria-expanded="false" aria-controls="collapseLayouts">
+                               <div class="sb-nav-link-icon"><i class="bi bi-basket3-fill text-white "></i></div>
+                                Basket
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+
+                                
+                                <div class="collapse" id="collapseAdd" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="index.php?page=Add Product"><i class="bi bi-cart4"></i>Add Products</a>
+                                    <a class="nav-link" href="index.php?page=Inventory Status">Inventory Status</a>
+                                    <a class="nav-link" href="index.php?page=Invoices Total Sales">Invoice Total Sales</a>
+                                    <a class="nav-link" href="index.php?page=Payment Breakdown">Payment Breakdown</a>
+                                    <a class="nav-link" href="index.php?page=Profit for Products">Profit For Products</a>
+                                    <a class="nav-link" href="index.php?page=Purchase_Orders_Summary">Purchase Order Summary</a>
+                                    <a class="nav-link" href="index.php?page=Sales_Summary">Sales Summary</a>
+                                </nav>
+                                </div>
+
+
+
                             <div class="sb-sidenav-menu-heading">Reports</div>
 
                                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseReport" aria-expanded="false" aria-controls="collapseLayouts">
-                               <div class="sb-nav-link-icon"><i class="bi bi-graph-up-arrow" style="color: gray;"></i></i></div>
+                               <div class="sb-nav-link-icon"><i class="bi bi-graph-up-arrow text-white"></i></div>
                                 Summary Reports
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
@@ -116,7 +139,7 @@
                                 </nav>
                             </div>
                             <div class="sb-sidenav-menu-heading">Addons</div>
-                            <a class="nav-link" href="charts.php">
+                            <a class="nav-link" href="index.php?page=Chart">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Charts
                             </a>
@@ -130,63 +153,127 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">Inventory</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Inventory Status Reports</li>
-                        </ol>
+<!--Error message-->
 
-                         <div class="row">
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-area me-1"></i>
-                                        Area Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                 <?php if (isset($success)) : ?>
+                <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
+                <?php endif; ?>
+
+                <?php if (isset($error)) : ?>
+                    <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
+                <?php endif; ?>
+<!--Error message end here-->
+
+<!--hero section-->
+                <div class="container-solid py- rounded-5 ">
+                        <div class="p-5 mb-4 lc-block">
+                            <div class="lc-block">
+                                <div editable="rich">
+                                    <h3><i class="bi bi-cart me-2 fs-1 "></i>Add Products</h3>
                                 </div>
                             </div>
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar me-1"></i>
-                                        Bar Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
+<!--her section-->
 
-                        <!--End of day summary-->
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                              Inventories Status
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                     <table class="table table-bordered table-striped">
-                                         <thead class="table-dark">
-                                            <tr>
-                                                <th> product_id</th>
-                                                <th> product_name </th>
-                                                <th>size </th>
-                                                <th>color </th>
-                                                <th>current_stock_quantity</th>
-                                                <th>quantity_stock_out</th>
-                                                <th>restock_level </th>
-                                            </tr>
-                                        </thead>       
-                                        <tbody>
-                                            
-                                         <?php
-                                         $conn=new ViewDB();
-                                         $conn->inventories();
-                                         ?>
-                                        </tbody>
-                                </table>
-                            </div>
+
+<!--form handling-->
+            <div class="container-solid d-flex justify-content-center mt-4">
+                <div style="max-width: 800px; width: 100%;">
+
+                    <form method="POST" id="formaction"><!--Request Method as POST-->
+                    <div class="row mb-2">
+                        
+                        <div class="col">
+
+                            <label for="variant_id" class="form-label">Variant ID</label>
+                            <input type="text" class="form-control form-control-sm" name="variant_id" id="variant_id">
+                            
                         </div>
-                  
+
+                         <div class="col">
+                            <label for="product_id" class="form-label">Product ID</label>
+                            <select class="form-select" name="product_id" id="product" required>
+
+                            <option value="" selected disabled>Select Product ID</option>
+
+                            <?php foreach ($products as $product): ?>
+
+                            <option value="<?= htmlspecialchars($product['product_id']) ?>">
+
+                            <?= htmlspecialchars($product['product_name']) ?>
+
+                            </option>
+                            <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                      
+
+                        <div class="col">
+                        <label for="size" class="form-label">Size</label>
+                        <input type="text" class="form-control form-control-sm" name="size" id="size">
+                        </div>
+                    </div>
+                        
+                    
+
+                    <div class="row mb-2">
+
+                         <div class="col">
+                        <label for="weight" class="form-label">Weight</label>
+                        <input type="text" class="form-control form-control-sm" name="weight" id="weight">
+                        </div>
+
+
+                         <div class="col">
+                        <label for="Color" class="form-label">Color</label>
+                        <input type="text" class="form-control form-control-sm" name="color" id="color">
+                        </div>
+
+                        <div class="col">
+                                <label for="unit_id" class="form-label">Unit ID</label>
+                                <select class="form-select" name="unit_id" id="unit" required>
+
+                                <option value="" selected disabled>Select Units</option>
+
+                                <?php foreach($units as $unit): ?>
+
+                                    <option value="<?=htmlspecialchars($unit['unit_id'])?>">
+                                        <?=htmlspecialchars($unit['unit_name'])?>
+                                    </option>
+
+                                <?php endforeach?>
+                                </select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2">
+
+                         <div class="col">
+                        <label for="base_price" class="form-label">Base Price</label>
+                        <input type="text" class="form-control form-control-sm" name="base_price" id="base_price">
+                        </div>
+
+
+                         <div class="col">
+                        <label for="cost_price" class="form-label">Cost Price</label>
+                        <input type="text" class="form-control form-control-sm" name="cost_price" id="cose_price">
+                        </div>
+
+                        <div class="col">
+                        <label for="current_stock_quantity" class="form-label">Current Stock Quantity</label>
+                        <input type="text" class="form-control form-control-sm" name="current_stock_quantity" id="current_stock_quantity">
+                        </div>
+
+                    </div>
+                    <!-- More rows and inputs here -->
+
+                    <button type="submit" name="add_variants" class="btn btn-primary btn-md">Add Product Variants</button>
+                    </form>
+                </div>
+            </div>
+
+<!--form handling end here-->
+
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">

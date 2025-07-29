@@ -3,25 +3,31 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 require_once 'core/database.php';
-require_once 'Model/products.php';
-require_once 'controller/HomeController.php';
-require_once 'Model/viewDB.php';
-require_once 'Model/view1DB.php';
-require_once 'controller/AddController.php';
+require_once 'Model/read/products.php';
+require_once 'controller/home/HomeController.php';
+require_once 'Model/read/viewDB.php';
+require_once 'Model/read/view1DB.php';
+require_once 'controller/create/AddProductsController.php';
+require_once 'controller/create/AddVariantsController.php';
 
+
+$variants=new AddVariantsController();
 // Instantiate the controller BEFORE using it
 $controller = new HomeController();
-$add=new AddController();
+$add=new AddProductsController();
+
 
 // Get the page parameter (defaults to 'home' if not set)
 $page = $_GET['page'] ?? 'home';
 
 switch ($page) 
 {
+    case 'AddVariants':
+        $variants->variants();
+        break;
     case 'Add Product':
         $add->ProductsAdd();
         break;
-
     case 'Chart': 
         $controller->Chart();
         break;
