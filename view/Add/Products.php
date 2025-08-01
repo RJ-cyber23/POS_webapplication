@@ -60,9 +60,8 @@
                                 
                                 <div class="collapse" id="collapseAdd" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="index.php?page=Add Product"><i class="bi bi-cart4"></i>Add Products</a>
-                                    <a class="nav-link" href="index.php?page=Inventory Status">Inventory Status</a>
-                                    <a class="nav-link" href="index.php?page=Invoices Total Sales">Invoice Total Sales</a>
+                                    <a class="nav-link" href="index.php?page=Add Product"><i class="bi bi-cart4 me-2"></i>Add Products</a>
+                                    <a class="nav-link" href="index.php?page=Purchase"><i class="bi bi-box-seam me-2"></i>Purchase Order</a>
                                     <a class="nav-link" href="index.php?page=Payment Breakdown">Payment Breakdown</a>
                                     <a class="nav-link" href="index.php?page=Profit for Products">Profit For Products</a>
                                     <a class="nav-link" href="index.php?page=Purchase_Orders_Summary">Purchase Order Summary</a>
@@ -259,7 +258,9 @@
                     </div>
                     <!-- More rows and inputs here -->
 
-                    <button type="submit" name="add_product" class="btn btn-primary btn-md">Add Product</button>
+                   <div class="d-flex justify-content-between p-3">
+                    <button type="submit" name="add_product" class="btn btn-primary btn-md">Enter</button>
+                    <a href="index.php?page=AddVariants" class="btn btn-primary btn-md">Click to Add Product Variants</a>
                     </form>
                 </div>
             </div>

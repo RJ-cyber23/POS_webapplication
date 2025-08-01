@@ -59,7 +59,7 @@
 
                                 
                                 <div class="collapse" id="collapseAdd" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
+                              <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="index.php?page=Add Product"><i class="bi bi-cart4 me-2"></i>Add Products</a>
                                     <a class="nav-link" href="index.php?page=Purchase"><i class="bi bi-box-seam me-2"></i>Purchase Order</a>
                                     <a class="nav-link" href="index.php?page=Payment Breakdown">Payment Breakdown</a>
@@ -168,10 +168,10 @@
                         <div class="p-5 mb-4 lc-block">
                             <div class="lc-block">
                                 <div editable="rich">
-                                    <h3><i class="bi bi-cart me-2 fs-1 "></i>Add Products Variants</h3>
+                                    <h3><i class="bi bi-box-seam me-2 fs-1"></i>Add Sales</h3>
                                 </div>
                             </div>
-<!--her section-->
+<!--hero section end-->
 
 
 <!--form handling-->
@@ -180,25 +180,24 @@
 
                     <form method="POST" id="formaction"><!--Request Method as POST-->
                     <div class="row mb-2">
-                        
                         <div class="col">
 
-                            <label for="variant_id" class="form-label">Variant ID</label>
-                            <input type="text" class="form-control form-control-sm" name="variant_id" id="variant_id">
+                            <label for="invoice_id" class="form-label">Invoices ID</label>
+                            <input type="text" class="form-control form-control-sm" name="invoice_id" id="invoice_id">
                             
                         </div>
 
                          <div class="col">
-                            <label for="product_id" class="form-label">Product ID</label>
-                            <select class="form-select" name="product_id" id="product" required>
+                            <label for="customer_id" class="form-label">Customers ID</label>
+                            <select class="form-select" name="customer_id" id="customer_id" required>
 
                             <option value="" selected disabled>Select Product ID</option>
 
-                            <?php foreach ($products as $product): ?>
+                            <?php foreach ($customers as $row): ?>
 
-                            <option value="<?= htmlspecialchars($product['product_id']) ?>">
+                            <option value="<?= htmlspecialchars($row['customer_id']) ?>">
 
-                            <?= htmlspecialchars($product['product_name']) ?>
+                            <?= htmlspecialchars($row['customer_name']) ?>
 
                             </option>
                             <?php endforeach; ?>
@@ -207,66 +206,35 @@
 
                       
 
-                        <div class="col">
-                        <label for="size" class="form-label">Size</label>
-                        <input type="text" class="form-control form-control-sm" name="size" id="size">
+                       <div class="col">
+                          <label for="invoice_date" class="form-label">Invoice Date</label>
+                          <input type="date" class="form-control form-control-sm" name="invoice_date" id="invoice_date">
                         </div>
                     </div>
                         
-                    
 
                     <div class="row mb-2">
+                        
+                        <div class="col" style="max-width: 800px; width=50%;">
+                        <label for="user_id" class="form-label">Users ID</label>
+                        <select class="form-select" name="user_id" id="user_id">
+                            <option value="" selected disabled>Select Variant ID</option>
+                            <?php foreach($users as $row): ?>
+                                <option value="<?=htmlspecialchars($row['user_id'])?>">
+                                    <?=htmlspecialchars($row['username'])?>
+                                </option>
+                                <?php endforeach; ?>
 
-                         <div class="col">
-                        <label for="weight" class="form-label">Weight</label>
-                        <input type="text" class="form-control form-control-sm" name="weight" id="weight">
+                        </select>
                         </div>
-
-
-                         <div class="col">
-                        <label for="Color" class="form-label">Color</label>
-                        <input type="text" class="form-control form-control-sm" name="color" id="color">
-                        </div>
-
-                        <div class="col">
-                                <label for="unit_id" class="form-label">Unit ID</label>
-                                <select class="form-select" name="unit_id" id="unit" required>
-
-                                <option value="" selected disabled>Select Units</option>
-
-                                <?php foreach($units as $unit): ?>
-
-                                    <option value="<?=htmlspecialchars($unit['unit_id'])?>">
-                                        <?=htmlspecialchars($unit['unit_name'])?>
-                                    </option>
-
-                                <?php endforeach?>
-                                </select>
-                        </div>
-                    </div>
-
-                    <div class="row mb-2">
-
-                         <div class="col">
-                        <label for="base_price" class="form-label">Base Price</label>
-                        <input type="text" class="form-control form-control-sm" name="base_price" id="base_price">
-                        </div>
-
-
-                         <div class="col">
-                        <label for="cost_price" class="form-label">Cost Price</label>
-                        <input type="text" class="form-control form-control-sm" name="cost_price" id="cose_price">
-                        </div>
-
-                        <div class="col">
-                        <label for="current_stock_quantity" class="form-label">Current Stock Quantity</label>
-                        <input type="text" class="form-control form-control-sm" name="current_stock_quantity" id="current_stock_quantity">
-                        </div>
+               
 
                     </div>
                     <!-- More rows and inputs here -->
-
-                    <button type="submit" name="add_variants" class="btn btn-primary btn-md">Enter</button>
+                    <div>
+                    <button type="submit" name="add_sales" class="btn btn-primary btn-md">Enter</button>
+                    </div>
+                    
                     </form>
                 </div>
             </div>

@@ -49,29 +49,45 @@
                                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                     Dashboard Reports
                                 </a>
-<!--Create-->
-                            <div class="sb-sidenav-menu-heading ">Add</div>
+<!--Create--> <!--Add menu heading-->
+                            <div class="sb-sidenav-menu-heading ">Products Menu</div>
                             <a class="nav-link collapsed bg-success rounded-4" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAdd" aria-expanded="false" aria-controls="collapseLayouts">
                                <div class="sb-nav-link-icon"><i class="bi bi-basket3-fill text-white "></i></div>
-                                Basket
+                                Products
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
 
                                 
                                 <div class="collapse" id="collapseAdd" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-
-
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="index.php?page=Add Product"><i class="bi bi-cart4 me-2"></i>Add Products</a>
-                                    <a class="nav-link" href="index.php?page=AddVariants">Add Products Variants</a>
-                                    <a class="nav-link" href="index.php?page=Invoices Total Sales">Invoice Total Sales</a>
-                                    <a class="nav-link" href="index.php?page=Payment Breakdown">Payment Breakdown</a>
+                                    <a class="nav-link" href="index.php?page=PurchaseOrders"><i class="bi bi-box-seam me-2"></i>Purchase Order</a>
+                                    <a class="nav-link" href="index.php?page=ReceiveProducts">Receive Products</a>
+                                </nav>
+                                </div>
+<!--End create--> <!--End Add menu heading-->
+
+<!--Sales menu-->
+ <div class="sb-sidenav-menu-heading ">Sales Menu</div>
+                            <a class="nav-link collapsed bg-warning rounded-4" href="#" data-bs-toggle="collapse" data-bs-target="#collapseSales" aria-expanded="false" aria-controls="collapseLayouts">
+                               <div class="sb-nav-link-icon"><i class="bi bi-basket3-fill text-white "></i></div>
+                                Sales
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+
+
+        <div class="collapse" id="collapseSales" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="index.php?page=SalesAdd"><i class="bi bi-cart4 me-2"></i>Sales</a>
+                                    <a class="nav-link" href="index.php?page=InvoiceAdd"><i class="bi bi-box-seam me-2"></i>Invoice</a>
+                                    <a class="nav-link" href="index.php?page=ReceiveProducts">Receive Products</a>
                                     <a class="nav-link" href="index.php?page=Profit for Products">Profit For Products</a>
                                     <a class="nav-link" href="index.php?page=Purchase_Orders_Summary">Purchase Order Summary</a>
                                     <a class="nav-link" href="index.php?page=Sales_Summary">Sales Summary</a>
                                 </nav>
                                 </div>
-<!--End create-->
+<!--End create--> <!--End Add menu heading-->
+<!--End Sales menu-->
 
                             <div class="sb-sidenav-menu-heading">Reports</div>
 
@@ -85,7 +101,7 @@
                                 <div class="collapse" id="collapseReport" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="index.php?page=End_of_Day">End of Day Summary</a>
-                                    <a class="nav-link" href="index.php?page=Inventory Status">Inventory Status</a>
+                                    <a class="nav-link" href="index.php?page=Inventory Status"><i class="bi bi-backpack3-fill me-2"></i>Inventory Status</a>
                                     <a class="nav-link" href="index.php?page=Invoices Total Sales">Invoice Total Sales</a>
                                     <a class="nav-link" href="index.php?page=Payment Breakdown">Payment Breakdown</a>
                                     <a class="nav-link" href="index.php?page=Profit for Products">Profit For Products</a>
@@ -155,27 +171,27 @@
 
             <div id="layoutSidenav_content">
                 <main>
-
- <div class="container-solid py-2 mb-4 bg-light rounded-5 ">
-        <div class="p-5 mb-4 lc-block">
-            <div class="lc-block">
-                <div editable="rich">
-                    <h2 class="fw-bolder display-3">Welcome to Our POS System</h2>
+<!--Home Hero Section-->
+        <div class="container-solid py-2 mb-4 bg-light rounded-5 ">
+                <div class="p-5 mb-4 lc-block">
+                    <div class="lc-block">
+                        <div editable="rich">
+                            <h2 class="fw-bolder display-3">Welcome To POS System</h2>
+                        </div>
+                    </div>
+                    <div class="lc-block col-md-8">
+                        <div editable="rich">
+                            <p class="lead">
+                            Manage your products, track inventory, and streamline your sales process all in one place. Fast, secure, and easy to use.        
+                        </p>
+                        </div>
+                    </div>
+                    <div class="lc-block">
+                        <a class="btn btn-primary" href="index.php?page=Add Product" role="button"><i class="bi bi-controller"></i>Lets Get Started</a>
+                    </div>
                 </div>
             </div>
-            <div class="lc-block col-md-8">
-                <div editable="rich">
-                    <p class="lead">
-                     Manage your products, track inventory, and streamline your sales process all in one place. Fast, secure, and easy to use.        
-                </p>
-                </div>
-            </div>
-            <div class="lc-block">
-                <a class="btn btn-primary" href="index.php?page=Add Product" role="button">Add new Product</a>
-            </div>
-        </div>
-    </div>
-
+<!--End Home Hero Section-->
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Dashboard</h1>
                         <ol class="breadcrumb mb-4">
@@ -202,154 +218,6 @@
                                 </div>
                             </div>
 
-                        <!--End of day summary-->
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                End of Day Summary 
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                     <table class="table table-bordered table-striped">
-                                         <thead class="table-dark">
-                                            <tr>
-                                                <th> invoice_date </th>
-                                                <th> total_sales </th>
-                                                <th>total_transaction </th>
-                                                <th>total_items_sold </th>
-                                                <th>total_cash</th>
-                                                <th>total_profit </th>
-                                            </tr>
-                                        </thead>       
-                                        <tbody>
-                                            
-                                           <?php $conn=new ViewDB();
-                                                $conn->Summary();
-                                           ?>
-                                        </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <!--End of day summary-->
-
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                              Inventories Status
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                     <table class="table table-bordered table-striped">
-                                         <thead class="table-dark">
-                                            <tr>
-                                                <th> product_id </th>
-                                                <th> product_name </th>
-                                                <th>size </th>
-                                                <th>color </th>
-                                                <th>quantity_stock_in</th>
-                                                <th>sales_stock_out </th>
-                                                <th>quantity_on_hand </th>
-                                                <th>last_restock_date </th>
-                                            </tr>
-                                        </thead>       
-                                        <tbody>
-                                            
-                                         <?php
-                                         $conn=new ViewDB();
-                                         $conn->inventories();
-                                         ?>
-                                        </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                              Invoices Total Sales
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                     <table class="table table-bordered table-striped">
-                                         <thead class="table-dark">
-                                            <tr>
-                                                <th> sales_id </th>
-                                                <th> invoice_id </th>
-                                                <th>invoice_date </th>
-                                                <th>customer_name </th>
-                                                <th>username</th>
-                                                <th>calculated_total_amount </th>
-                                                <th>total_paid </th>
-                                                <th>balance </th>
-                                                <th>Payment_Status</th>
-
-                                            </tr>
-                                        </thead>       
-                                        <tbody>
-                                            <?php $conn=new ViewDB();
-                                                $conn->Invoice();
-                                            ?>
-                                        </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                Payment Breakdown
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                     <table class="table table-bordered table-striped">
-                                         <thead class="table-dark">
-                                            <tr>
-                                                <th> invoice_id</th>
-                                                <th> customer_name </th>
-                                                <th>payment_method_id </th>
-                                                <th>amount_paid </th>
-                                                <th>payment_date</th>
-                                                <th>username </th>
-                                            </tr>
-                                        </thead>       
-                                        <tbody>
-                                            <?php $conn=new ViewDB();
-                                                $conn->Payment();
-                                            ?>
-                                        </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                               Profit For Products
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                     <table class="table table-bordered table-striped">
-                                         <thead class="table-dark">
-                                            <tr>
-                                                <th> product_id</th>
-                                                <th> product_name </th>
-                                                <th>cost_price </th>
-                                                <th>base_price </th>
-                                                <th>ordered_quantity</th>
-                                                <th>sold_quantity </th>
-                                                <th>total_cost </th>
-                                                <th>expected_sales </th>
-                                                <th>total_profit </th>
-                                            </tr>
-                                        </thead>       
-                                        <tbody>
-                                            <?php $conn=new View1DB();
-                                                $conn->Profit();
-                                            ?>
-                                        </tbody>
-                                </table>
-                            </div>
-                        </div>
 
                     </div>
                 </main>

@@ -9,8 +9,17 @@ require_once 'Model/read/viewDB.php';
 require_once 'Model/read/view1DB.php';
 require_once 'controller/create/AddProductsController.php';
 require_once 'controller/create/AddVariantsController.php';
+require_once 'controller/create/PurchaseAdd.php';
+require_once 'controller/create/PurchaseOrdersItemsAddController.php';
+require_once 'controller/create/ReceiveProductsAddController.php';
+require_once 'controller/create/SalesAddController.php';
+require_once 'controller/create/InvoicesAddController.php';
 
-
+$invoices=new InvoicesAddController();
+$sales=new SalesAddController();
+$receive=new ReceiveProductsAddController();
+$purchase__=new PurchaseOrdersItemsAddController();
+$purchase=new PurchaseAdd();
 $variants=new AddVariantsController();
 // Instantiate the controller BEFORE using it
 $controller = new HomeController();
@@ -22,6 +31,21 @@ $page = $_GET['page'] ?? 'home';
 
 switch ($page) 
 {
+    case 'InvoiceAdd':
+        $invoices->invoicesAdd();
+        break;
+    case 'SalesAdd':
+        $sales->salesAdd();
+        break;
+    case 'ReceiveProducts':
+        $receive->receiveProducts();
+        break;
+    case 'PurchaseOrders':
+       $purchase__->purchase_orders_items();
+       break;
+    case 'Purchase': 
+        $purchase->purchase();
+        break;
     case 'AddVariants':
         $variants->variants();
         break;
