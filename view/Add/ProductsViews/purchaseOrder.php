@@ -253,6 +253,7 @@
                     <!-- More rows and inputs here -->
                     <div class="d-flex justify-content-between p-3">
                     <button type="submit" name="add_purchase" class="btn btn-primary btn-md">Add Purchase Orders</button>
+                    <a href="index.php?page=PurchaseOrdersItems" class="btn btn-primary btn-md">Click to Add Product Variants</a>
                     </div>
                     
                     </form>

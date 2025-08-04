@@ -1,5 +1,5 @@
 <?php
-    require_once 'Model/Create/InvoicesModel.php';
+    require_once 'Model/Create/SalesModel/InvoicesModel.php';
     class InvoicesAddController
     {
         public function invoicesAdd()
@@ -23,7 +23,7 @@
             }
             $users=$this->users_id();
             $customers=$this->customer_id();
-            require_once 'view/Add/InvoicesView.php';
+            require_once 'view/Add/SalesViews/InvoicesView.php';
         }
 
         public function users_id() 

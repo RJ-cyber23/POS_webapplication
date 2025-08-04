@@ -1,6 +1,6 @@
 <?php
 use LDAP\Result;
-require_once 'Model/Create/PurchaseModelOrdersItems.php';
+require_once 'Model/Create/ProductsModel/PurchaseOrdersItemsModel.php';
     class PurchaseOrdersItemsAddController
     {
         public function purchase_orders_items()
@@ -26,7 +26,7 @@ require_once 'Model/Create/PurchaseModelOrdersItems.php';
             }
             $suppliers=$this->getAll_Suppliers();
             $products=$this->getAll_product_id();
-            require_once 'view/Add/PurchaseOrdersItems.php';
+            require_once 'view/Add/ProductsViews/PurchaseOrdersItems.php';
 
         }
 

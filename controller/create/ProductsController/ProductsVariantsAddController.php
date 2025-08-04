@@ -1,7 +1,7 @@
 <?php
 
-    require_once 'Model/Create/AddVariants.php';
-    class AddVariantsController
+    require_once 'Model/Create/ProductsModel/ProductVariats.php';
+    class ProductsVariantsAddController
     {
         public function variants()
         {
@@ -28,7 +28,7 @@
 
             $units=$this->getAll_Unit_ID();
             $products = $this->getAll_Product_ID();
-            require 'view/Add/ProductVariants.php';
+            require 'view/Add/ProductsViews/ProductVariants.php';
 
         }
 

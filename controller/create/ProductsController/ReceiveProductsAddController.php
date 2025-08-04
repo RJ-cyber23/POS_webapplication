@@ -1,5 +1,5 @@
 <?php
-    require_once 'Model/Create/ReceiveProductsModel.php';
+    require_once 'Model/Create/ProductsModel/ReceiveProductsModel.php';
     class ReceiveProductsAddController
     {
         public function receiveProducts()
@@ -27,7 +27,7 @@
             $suppliers=$this->supplier_id();
             $purchase=$this->Purchase_Orders_id();
             $products=$this->product_id();
-            require_once 'view/Add/ReceiveProducts.php';
+            require_once 'view/Add/ProductsViews/ReceiveProducts.php';
         }
         public function product_id()
         {

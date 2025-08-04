@@ -55,11 +55,11 @@
                                <div class="sb-nav-link-icon"><i class="bi bi-basket3-fill text-white "></i></div>
                                 Basket
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
+                                </a>
 
                                 
                                 <div class="collapse" id="collapseAdd" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
+                              <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="index.php?page=Add Product"><i class="bi bi-cart4 me-2"></i>Add Products</a>
                                     <a class="nav-link" href="index.php?page=Purchase"><i class="bi bi-box-seam me-2"></i>Purchase Order</a>
                                     <a class="nav-link" href="index.php?page=Payment Breakdown">Payment Breakdown</a>
@@ -153,7 +153,8 @@
             <div id="layoutSidenav_content">
                 <main>
 <!--Error message-->
-                <?php if (isset($success)) : ?>
+
+                 <?php if (isset($success)) : ?>
                 <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
                 <?php endif; ?>
 
@@ -167,110 +168,104 @@
                         <div class="p-5 mb-4 lc-block">
                             <div class="lc-block">
                                 <div editable="rich">
-                                    <h3><i class="bi bi-cart me-2 fs-1 "></i>Add Products</h3>
+                                    <h3><i class="bi bi-box-seam me-2 fs-1"></i>Add Customers</h3>
                                 </div>
                             </div>
-<!--her section-->
+<!--hero section end-->
 
 
 <!--form handling-->
-            <div class="container-solid d-flex justify-content-center mt-4">
+            <div class="container-fluid d-flex justify-content-center mt-4">
                 <div style="max-width: 800px; width: 100%;">
 
                     <form method="POST" id="formaction"><!--Request Method as POST-->
                     <div class="row mb-2">
-                        
                         <div class="col">
-
-                            <label for="product_name" class="form-label">Product ID</label>
-                            <input type="text" class="form-control form-control-sm" name="product_name" id="product_name">
+	 	 	 	 	
+                            <label for="payment_id" class="form-label">Payments ID</label>
+                            <input type="text" class="form-control form-control-sm" name="payment_id" id="payment_id">
                             
                         </div>
 
-                        <div class="col">
-                        <label for="product_name" class="form-label">Product Name</label>
-                        <input type="text" class="form-control form-control-sm" name="product_name" id="product_name">
-                        </div>
-
-                        <div class="col">
-                        <label for="product_code" class="form-label">Product Code</label>
-                        <input type="text" class="form-control form-control-sm" name="product_code" id="product_code">
-                        </div>
-                    </div>
-
-                    <div class="row mb-2">
                          <div class="col">
-                            <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control" id="description" name="description" rows="2"></textarea>
+                            <label for="invoice_id" class="form-label">Invoices ID</label>
+                            <select class="form-select" name="invoice_id" id="invoice_id">
+                            <option value="" selected disabled>Select Invoices ID</option>
+                            <?php foreach($invoices as $row):?>
+                                <option value="<?=htmlspecialchars($row['invoice_id'])?>">
+                                    <?=htmlspecialchars($row['invoice_id'])?>
+                                </option>
+                                <?php endforeach?>
+                            </select>
+                        </div>
+
+                      
+
+                       <div class="col">
+                            <label for="payment_method_id" class="form-label">Payment Methods ID</label>
+                            <select class="form-select" name="payment_method_id" id="payment_method_id">
+                                <option value="" selected disabled>Select Payment Methods</option>
+                                <?php foreach($methods as $row):?>
+                                    <option value="<?=htmlspecialchars($row['payment_method_id'])?>">
+                                        <?=htmlspecialchars($row['method_name'])?>
+                                    </option>
+                                    <?php endforeach?>
+
+                            </select>
                         </div>
                     </div>
+                        
 
-                    <div class="row mb-2">
+                    <div class="row row-cols-4 mb-2">
+                        
                         <div class="col">
-                            <label for="category" class="form-label">Category ID</label>
-                            <select class="form-select" name="category_id" id="category" required>
-
-                            <option value="" selected disabled>Select Category</option>
-
-                            <?php foreach ($categories as $category): ?>
-
-                            <option value="<?= htmlspecialchars($category['category_id']) ?>">
-
-                            <?= htmlspecialchars($category['category_name']) ?>
-
-                            </option>
-                            <?php endforeach; ?>
-                            </select>
+                        <label for="amount" class="form-label">Amount</label>
+                       <input type="text" class="form-control form-control-sm" name="amount" id="amount">
                         </div>
-
-                        <div class="col">
-                            <label for="brand" class="form-label">Brand ID</label>
-                            <select class="form-select" name="brand_id" id="brand" required>
-
-                            <option value="" selected disabled>Select Brands</option>
-
-                            <?php foreach ($brands as $brand): ?>
-
-                            <option value="<?= htmlspecialchars($brand['brand_id']) ?>">
-
-                            <?= htmlspecialchars($brand['brand_name']) ?>
-
-                            </option>
-                            <?php endforeach; ?>
-                            </select>
+                        
+                         <div class="col">
+                            <label for="payment_date" class="form-label">Payment Date</label>
+                            <input type="date" class="form-control form-control-sm" name="payment_date" id="payment_date">
                         </div>
+                        
+                        <div class="col">
+                        <label for="bank_id" class="form-label">Bank ID</label>
+                        <select class="form-select" name="bank_id" id="bank_id">
+                                <option value="" selected disabled>Select Bank ID</option>
+                                <?php foreach($banks as $row):?>
+                                 <option value="<?=htmlspecialchars($row['bank_id'])?>">
+                                    <?=htmlspecialchars($row['bank_name'])?>
+                                 </option>
+                                 <?php endforeach?>
+                        </select>
+                        </div>
+                        
+                       
+                        
+                        
 
                         <div class="col">
-                                <label for="supplier" class="form-label">Supplier ID</label>
-                                <select class="form-select" name="supplier_id" id="Suppliers" required>
-
-                                <option value="" selected disabled>Select Suppliers</option>
-
-                                <?php foreach($suppliers as $supplier): ?>
-
-                                    <option value="<?=htmlspecialchars($supplier['supplier_id'])?>">
-                                        <?=htmlspecialchars($supplier['supplier_name'])?>
+                            <label for="user_id" class="form-label">User ID</label>
+                            <select class ="form-select" name="user_id" id="user_id">
+                                <option value="" selected disabled>Select User ID</option>
+                                <?php foreach ($users as $row):?>
+                                    <option value="<?=htmlspecialchars($row['user_id'])?>">
+                                        <?=htmlspecialchars($row['user_id'])?>
                                     </option>
+                                    <?php endforeach?>
+                            </select>
 
-                                <?php endforeach?>
-                                </select>
                         </div>
                     </div>
                     <!-- More rows and inputs here -->
-
-                   <div class="d-flex justify-content-between p-3">
-                    <button type="submit" name="add_product" class="btn btn-primary btn-md">Enter</button>
-                    <a href="index.php?page=AddVariants" class="btn btn-primary btn-md">Click to Add Product Variants</a>
+                    <div>
+                    <button type="submit" name="add_payments" class="btn btn-primary btn-md">Enter</button>
+                    </div>
+                    
                     </form>
                 </div>
             </div>
 
-<!--End line for Add Products-->
-
-<!--Add variants-->
-
-              
-<!--End of Add Variant-->
 <!--form handling end here-->
 
                 </main>

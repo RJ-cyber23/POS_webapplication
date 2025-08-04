@@ -8,7 +8,6 @@
         <meta name="author" content="" />
         <title>Dashboard-Home</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link rel="stylesheet" href="assets/MyownCSS/css.css">
         <link href="Style/bootstrap.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -19,12 +18,6 @@
             <a class="navbar-brand ps-3" href="index.php?page=home">Point Of Sale</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle"><i class="fas fa-bars"></i></button>
-        
-
-            <a class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 text-secondary" href=""><i class="bi bi-eye fs-5"></i></a>
-
-
-             
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="input-group">
@@ -33,7 +26,6 @@
                 </div>
             </form>
             <!-- Navbar-->
-<!--Profile dropdown-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
                     <!--for profile-->
@@ -46,7 +38,6 @@
                     </ul>
                 </li>
             </ul>
-<!--End for Profile dropdown-->
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
@@ -58,57 +49,27 @@
                                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                     Dashboard Reports
                                 </a>
-<!--Add menu heading-->
-                            <div class="sb-sidenav-menu-heading ">Products Menu</div>
+
+                            <div class="sb-sidenav-menu-heading ">Add</div>
                             <a class="nav-link collapsed bg-success rounded-4" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAdd" aria-expanded="false" aria-controls="collapseLayouts">
                                <div class="sb-nav-link-icon"><i class="bi bi-basket3-fill text-white "></i></div>
-                                Products
+                                Basket
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
+                            </a>
 
                                 
                                 <div class="collapse" id="collapseAdd" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="index.php?page=ProductsAdd"><i class="bi bi-cart4 me-2"></i>Add Products</a>
-                                    <a class="nav-link" href="index.php?page=PurchaseOrders"><i class="bi bi-box-seam me-2"></i>Purchase Order</a>
-                                    <a class="nav-link" href="index.php?page=ReceiveProducts">Receive Products</a>
+                                    <a class="nav-link" href="index.php?page=Add Product"><i class="bi bi-cart4 me-2"></i>Add Products</a>
+                                    <a class="nav-link" href="index.php?page=Purchase"><i class="bi bi-box-seam me-2"></i>Purchase Order</a>
+                                    <a class="nav-link" href="index.php?page=Payment Breakdown">Payment Breakdown</a>
+                                    <a class="nav-link" href="index.php?page=Profit for Products">Profit For Products</a>
+                                    <a class="nav-link" href="index.php?page=Purchase_Orders_Summary">Purchase Order Summary</a>
+                                    <a class="nav-link" href="index.php?page=Sales_Summary">Sales Summary</a>
                                 </nav>
                                 </div>
-<!--End Add menu heading-->
-
-<!--Sales menu-->
-                            <div class="sb-sidenav-menu-heading ">Sales Menu</div>
-                            <a class="nav-link collapsed bg-warning rounded-4" href="#" data-bs-toggle="collapse" data-bs-target="#collapseSales" aria-expanded="false" aria-controls="collapseLayouts">
-                               <div class="sb-nav-link-icon"><i class="bi bi-basket3-fill text-white "></i></div>
-                                Sales
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
 
 
-                                <div class="collapse" id="collapseSales" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="index.php?page=SalesAdd"><i class="bi bi-cart4 me-2"></i>Sales</a>
-                                        <a class="nav-link" href="index.php?page=InvoiceAdd"><i class="bi bi-box-seam me-2"></i>Invoice</a>
-                                    </nav>
-                                </div>
-<!--End Sales menu-->
-
-<!--Customer Menu-->
-                            <div class="sb-sidenav-menu-heading ">Customers Menu</div>
-                            <a class="nav-link collapsed bg-primary rounded-4" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCustomer" aria-expanded="false" aria-controls="collapseLayouts">
-                               <div class="sb-nav-link-icon"><i class="bi bi-basket3-fill text-white "></i></div>
-                                Customers
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-
-
-                                <div class="collapse" id="collapseCustomer" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="index.php?page=CustomerAdd"><i class="bi bi-cart4 me-2"></i>Customers</a>
-                                        <a class="nav-link" href="index.php?page=PaymentAdd"><i class="bi bi-box-seam me-2"></i>Payments</a>
-                                    </nav>
-                                </div>
-<!--End Customer Menu-->
 
                             <div class="sb-sidenav-menu-heading">Reports</div>
 
@@ -122,7 +83,7 @@
                                 <div class="collapse" id="collapseReport" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="index.php?page=End_of_Day">End of Day Summary</a>
-                                    <a class="nav-link" href="index.php?page=Inventory Status"><i class="bi bi-backpack3-fill me-2"></i>Inventory Status</a>
+                                    <a class="nav-link" href="index.php?page=Inventory Status">Inventory Status</a>
                                     <a class="nav-link" href="index.php?page=Invoices Total Sales">Invoice Total Sales</a>
                                     <a class="nav-link" href="index.php?page=Payment Breakdown">Payment Breakdown</a>
                                     <a class="nav-link" href="index.php?page=Profit for Products">Profit For Products</a>
@@ -189,58 +150,129 @@
                     </div>
                 </nav>
             </div>
-
             <div id="layoutSidenav_content">
                 <main>
-<!--Home Hero Section-->
-        <div class="container-solid py-2 mb-4 bg-light rounded-5 ">
-                <div class="p-5 mb-4 lc-block">
-                    <div class="lc-block">
-                        <div editable="rich">
-                            <h2 class="fw-bolder display-3">Welcome To POS System</h2>
+<!--Error message-->
+                <?php if (isset($success)) : ?>
+                <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
+                <?php endif; ?>
+
+                <?php if (isset($error)) : ?>
+                    <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
+                <?php endif; ?>
+<!--Error message end here-->
+
+<!--hero section-->
+                <div class="container-solid py- rounded-5 ">
+                        <div class="p-5 mb-4 lc-block">
+                            <div class="lc-block">
+                                <div editable="rich">
+                                    <h3><i class="bi bi-cart me-2 fs-1 "></i>Add Products</h3>
+                                </div>
+                            </div>
+<!--her section-->
+
+
+<!--form handling-->
+            <div class="container-solid d-flex justify-content-center mt-4">
+                <div style="max-width: 800px; width: 100%;">
+
+                    <form method="POST" id="formaction"><!--Request Method as POST-->
+                    <div class="row mb-2">
+                        
+                        <div class="col">
+
+                            <label for="product_name" class="form-label">Product ID</label>
+                            <input type="text" class="form-control form-control-sm" name="product_name" id="product_name">
+                            
+                        </div>
+
+                        <div class="col">
+                        <label for="product_name" class="form-label">Product Name</label>
+                        <input type="text" class="form-control form-control-sm" name="product_name" id="product_name">
+                        </div>
+
+                        <div class="col">
+                        <label for="product_code" class="form-label">Product Code</label>
+                        <input type="text" class="form-control form-control-sm" name="product_code" id="product_code">
                         </div>
                     </div>
-                    <div class="lc-block col-md-8">
-                        <div editable="rich">
-                            <p class="lead">
-                            Manage your products, track inventory, and streamline your sales process all in one place. Fast, secure, and easy to use.        
-                        </p>
+
+                    <div class="row mb-2">
+                         <div class="col">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="2"></textarea>
                         </div>
                     </div>
-                    <div class="lc-block">
-                        <a class="btn btn-primary" href="index.php?page=Add Product" role="button"><i class="bi bi-controller"></i>Lets Get Started</a>
+
+                    <div class="row mb-2">
+                        <div class="col">
+                            <label for="category" class="form-label">Category ID</label>
+                            <select class="form-select" name="category_id" id="category" required>
+
+                            <option value="" selected disabled>Select Category</option>
+
+                            <?php foreach ($categories as $category): ?>
+
+                            <option value="<?= htmlspecialchars($category['category_id']) ?>">
+
+                            <?= htmlspecialchars($category['category_name']) ?>
+
+                            </option>
+                            <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div class="col">
+                            <label for="brand" class="form-label">Brand ID</label>
+                            <select class="form-select" name="brand_id" id="brand" required>
+
+                            <option value="" selected disabled>Select Brands</option>
+
+                            <?php foreach ($brands as $brand): ?>
+
+                            <option value="<?= htmlspecialchars($brand['brand_id']) ?>">
+
+                            <?= htmlspecialchars($brand['brand_name']) ?>
+
+                            </option>
+                            <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div class="col">
+                                <label for="supplier" class="form-label">Supplier ID</label>
+                                <select class="form-select" name="supplier_id" id="Suppliers" required>
+
+                                <option value="" selected disabled>Select Suppliers</option>
+
+                                <?php foreach($suppliers as $supplier): ?>
+
+                                    <option value="<?=htmlspecialchars($supplier['supplier_id'])?>">
+                                        <?=htmlspecialchars($supplier['supplier_name'])?>
+                                    </option>
+
+                                <?php endforeach?>
+                                </select>
+                        </div>
                     </div>
+                    <!-- More rows and inputs here -->
+
+                   <div class="d-flex justify-content-between p-3">
+                    <button type="submit" name="add_product" class="btn btn-primary btn-md">Enter</button>
+                    <a href="index.php?page=ProductsVariants" class="btn btn-primary btn-md">Click to Add Product Variants</a>
+                    </form>
                 </div>
             </div>
-<!--End Home Hero Section-->
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard Reports</li>
-                        </ol>
 
-                         <div class="row">
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-area me-1"></i>
-                                        Area Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar me-1"></i>
-                                        Bar Chart Example
-                                    </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
+<!--End line for Add Products-->
 
+<!--Add variants-->
 
-                    </div>
+              
+<!--End of Add Variant-->
+<!--form handling end here-->
+
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
@@ -256,7 +288,6 @@
                 </footer>
             </div>
         </div>
-        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="assets/js/scripts.js"></script>
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>

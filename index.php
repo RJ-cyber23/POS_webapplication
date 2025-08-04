@@ -3,83 +3,24 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 require_once 'core/database.php';
-require_once 'Model/read/products.php';
-require_once 'controller/home/HomeController.php';
-require_once 'Model/read/viewDB.php';
-require_once 'Model/read/view1DB.php';
-require_once 'controller/create/AddProductsController.php';
-require_once 'controller/create/AddVariantsController.php';
-require_once 'controller/create/PurchaseAdd.php';
-require_once 'controller/create/PurchaseOrdersItemsAddController.php';
-require_once 'controller/create/ReceiveProductsAddController.php';
-require_once 'controller/create/SalesAddController.php';
-require_once 'controller/create/InvoicesAddController.php';
 
-$invoices=new InvoicesAddController();
-$sales=new SalesAddController();
-$receive=new ReceiveProductsAddController();
-$purchase__=new PurchaseOrdersItemsAddController();
-$purchase=new PurchaseAdd();
-$variants=new AddVariantsController();
-// Instantiate the controller BEFORE using it
-$controller = new HomeController();
-$add=new AddProductsController();
-
-
-// Get the page parameter (defaults to 'home' if not set)
 $page = $_GET['page'] ?? 'home';
 
-switch ($page) 
-{
-    case 'InvoiceAdd':
-        $invoices->invoicesAdd();
-        break;
-    case 'SalesAdd':
-        $sales->salesAdd();
-        break;
-    case 'ReceiveProducts':
-        $receive->receiveProducts();
-        break;
-    case 'PurchaseOrders':
-       $purchase__->purchase_orders_items();
-       break;
-    case 'Purchase': 
-        $purchase->purchase();
-        break;
-    case 'AddVariants':
-        $variants->variants();
-        break;
-    case 'Add Product':
-        $add->ProductsAdd();
-        break;
-    case 'Chart': 
-        $controller->Chart();
-        break;
-    case 'Sales_Summary':
-        $controller->Sales_Summary();
-        break;
-    case 'Purchase_Orders_Summary':
-        $controller->Purchase_Orders_Summary();
-        break;
-    case 'Profit for Products':
-        $controller->Profit_for_Products();
-    break;
-    case 'Payment Breakdown':
-        $controller->Payment_Breakdown();
-        break;
-    case 'Invoices Total Sales':
-        $controller->Invoice_Status();
-        break;
-    case 'Inventory Status':
-        $controller->Inventory_Status();
-        break;
+// Define which router handles which pages
+$routerMap = [
+    //Customer Menu Routs
+    'CustomerAdd'       =>'routs/Menu/CustomerMenuRouts.php',
+    'PaymentAdd'        =>'routs/Menu/CustomerMenuRouts.php',
+    //Customer Menu end here!
+    //Sales Menu routs
+    'InvoiceAdd'        =>'routs/Menu/SalesMenuRouts.php',
+    'SalesAdd'          =>'routs/Menu/SalesMenuRouts.php'
+    //Sales Menu End here!
+];
 
-    case 'End_of_Day':
-        $controller->End_of_Day();
-        break;
-    case 'home': 
-    default:
-        $controller->Index();
-        break;
+// If the page exists in the map, load its router; otherwise, load web.php
+if (array_key_exists($page, $routerMap)) {
+    require_once $routerMap[$page];
+}else {
+    require_once 'routs/Menu/ProductsMenuRouts.php';
 }
-?>

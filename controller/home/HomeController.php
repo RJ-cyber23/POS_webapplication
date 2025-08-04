@@ -1,4 +1,5 @@
 <?php
+require_once 'Model/read/products.php';
 class HomeController
 {
     public function Index() 

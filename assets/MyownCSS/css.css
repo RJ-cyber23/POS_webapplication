@@ -1,0 +1,8 @@
+a.btn-link.text-secondary:hover {
+    color: #ffffff !important; /* Bootstrap blue */
+}
+
+#sidebarToggle:hover{
+    color: #ffffff !important;
+}
+

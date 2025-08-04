@@ -2,7 +2,7 @@
 
 use LDAP\Result;
 
-    require_once 'Model/Create/PurchaseOrderModel.php';
+    require_once 'Model/Create/ProductsModel/PurchaseOrderModel.php';
     class PurchaseAdd
     {
         public function purchase()
@@ -29,7 +29,7 @@ use LDAP\Result;
             $status=$this->getAll_status_id();
             $suppliers=$this->getAll_supplier_id();
             $products=$this->getAll_product_id();
-            require_once 'view/Add/purchaseOrder.php';
+            require_once 'view/Add/ProductsViews/purchaseOrder.php';
         }
 
         public function getAll_status_id()

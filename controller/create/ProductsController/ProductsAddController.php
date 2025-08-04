@@ -1,9 +1,9 @@
 <?php
 
 use LDAP\Result;
-require_once 'Model/Create/AddProducts.php';
+require_once 'Model/Create/ProductsModel/ProductsModel.php';
 
-class AddProductsController
+class ProductsAddController
 {
     public function ProductsAdd()
     {
@@ -28,7 +28,7 @@ class AddProductsController
         $categories = $this->getAll_Categories();
         $brands=$this->getAll_Brands();
         $suppliers=$this->getAll_Suppliers();
-        require 'view/Add/Products.php';
+        require 'view/Add/ProductsViews/Products.php';
     }
 
     

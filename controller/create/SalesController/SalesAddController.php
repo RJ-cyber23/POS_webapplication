@@ -1,5 +1,5 @@
 <?php
-    require_once 'Model/Create/SalesModel.php';
+    require_once 'Model/Create/SalesModel/SalesModel.php';
     class SalesAddController
     {
         public function salesAdd()
@@ -24,7 +24,7 @@
             $variants=$this->variant_id();
             $products=$this->product_id();
             $invoices=$this->invoice_id();
-            require_once 'view/Add/SalesView.php';
+            require_once 'view/Add/SalesViews/SalesView.php';
         }
         public function invoice_id()
         {
