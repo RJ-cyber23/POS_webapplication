@@ -1,16 +1,14 @@
 <?php
-
-use LDAP\Result;
-
+    require_once 'Model/read/ProductsModelRead/PurchaseOrdersReadModel.php';
+    require_once 'Model/delete/ProductsDeleteModel/PurchaseOrdersDeleteModel.php';
+    require_once 'Model/update/ProductsEditModel/PurchaseOrderEditModel.php';
     require_once 'Model/Create/ProductsModel/PurchaseOrderModel.php';
     class PurchaseAdd
     {
         public function purchase()
         {
             session_start();
-            $success=$_SESSION['success'] ?? null;
-            $error=$_SESSION['error'] ?? null;
-            unset($_SESSION['success'], $_SESSION['error']);
+            
 
             if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['add_purchase']))
             {
@@ -26,10 +24,51 @@ use LDAP\Result;
                 header("Location: ". $_SERVER['REQUEST_URI']);
                 exit;
             }
+            elseif(isset($_POST['edit_purchaseOrders']))
+            {
+               $conn=(new PurchaseOrderEditModel())->purchaseOrderEdit($_POST);
+               if($conn)
+               {
+                    $_SESSION['success']="Edited Successfully! ";
+               }else{
+                $_SESSION['error'];
+               }
+               header("Location: ". $_SERVER['REQUEST_URI']);
+               exit;
+            }
+            elseif(isset($_POST['delete_purchaseOrders']))
+            {
+                $Purchase_Orders_id=$_POST['Purchase_Orders_id'] ?? null;
+                if($Purchase_Orders_id)
+                {
+                    $conn=(new PurchaseOrdersDeleteModel())->purchaseOrdersDelete($Purchase_Orders_id);
+                    if($conn===true)
+                    {
+                        $_SESSION['success']= "Successfully Deleted! Purchase Orders ID #$Purchase_Orders_id";
+                    }else{
+                        $_SESSION['error']= $conn;
+                    }
+                }
+                header("Location: ". $_SERVER['REQUEST_URI']);
+                exit;
+            }
+
+            $poi=$this->purchase_orders_items();
             $status=$this->getAll_status_id();
             $suppliers=$this->getAll_supplier_id();
             $products=$this->getAll_product_id();
+
+            $success=$_SESSION['success'] ?? null;
+            $error=$_SESSION['error'] ?? null;
+            unset($_SESSION['success'], $_SESSION['error']);
             require_once 'view/Add/ProductsViews/purchaseOrder.php';
+        }
+
+        public function purchase_orders_items()
+        {
+            $conn=(new Database())->connect();
+            $select=$conn->query("SELECT Purchase_Orders_Items_id FROM PurchaseOrders ");
+            return $select->fetchAll(PDO::FETCH_ASSOC);
         }
 
         public function getAll_status_id()

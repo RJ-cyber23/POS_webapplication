@@ -8,7 +8,8 @@
         <meta name="author" content="" />
         <title>Dashboard-Home</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link href="Style/bootstrap.css" rel="stylesheet" />
+        <link href="Style/bootstrap.css" rel="stylesheet" />    <link rel="stylesheet" href="assets/MyownCSS/css.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
@@ -161,106 +162,257 @@
                 <?php if (isset($error)) : ?>
                     <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
                 <?php endif; ?>
+
 <!--Error message end here-->
 
-<!--hero section-->
-                <div class="container-solid py- rounded-5 ">
-                        <div class="p-5 mb-4 lc-block">
-                            <div class="lc-block">
-                                <div editable="rich">
-                                    <h3><i class="bi bi-box-seam me-2 fs-1"></i>Add Purchase Order</h3>
-                                </div>
-                            </div>
-<!--hero section end-->
 
-
-<!--form handling-->
-            <div class="container-solid d-flex justify-content-center mt-4">
-                <div style="max-width: 800px; width: 100%;">
-
-                    <form method="POST" id="formaction"><!--Request Method as POST-->
-                    <div class="row mb-2">
-                        <div class="col">
-
-                            <label for="Purchase_Orders_id" class="form-label">Purchase Orders ID</label>
-                            <input type="text" class="form-control form-control-sm" name="Purchase_Orders_id" id="Purchase_Orders_id">
-                            
-                        </div>
-	 	 	 	 	 	
-                         <div class="col">
-                            <label for="Purchase_Orders_Items_id" class="form-label">Purchase Orders Items ID</label>
-                            <select class="form-select" name="Purchase_Orders_Items_id" id="Purchase_Orders_Items_id" required>
-
-                            <option value="" selected disabled>Select Product ID</option>
-
-                            <?php foreach ($products as $product): ?>
-
-                            <option value="<?= htmlspecialchars($product['product_id']) ?>">
-
-                            <?= htmlspecialchars($product['product_name']) ?>
-
-                            </option>
-                            <?php endforeach; ?>
-                            </select>
-                        </div>
-
-                      
-
-                       <div class="col">
-                            <label for="supplier_id" class="form-label">Supplier ID</label>
-                            <select class="form-select" name="supplier_id" id="supplier" required>
-
-                            <option value="" selected disabled>Select Product ID</option>
-
-                            <?php foreach ($suppliers as $supplier): ?>
-
-                            <option value="<?= htmlspecialchars($supplier['supplier_id']) ?>">
-
-                            <?= htmlspecialchars($supplier['supplier_name']) ?>
-
-                            </option>
-                            <?php endforeach; ?>
-                            </select>
-                        </div>
-                    </div>
-                        
+<!--Read Customers-->
+<form method="POST" id="formaction">
+       <div class="container-fluid">
+	<div class="table-responsive">
+		<div class="table-wrapper">
+			<div class="table-title">
+				<div class="row">
+					<div class="col-sm-6">
+						<h2>Manage <b>Purchase Order</b></h2>
+					</div>
+					<div class="col-sm-6">
+                        <a href="index.php?page=PurchaseOrdersItems" class="btn btn-primary">Next</a>
+						<a href="#addCustomerModal" class="btn btn-primary" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Customers</span></a>
+					<button type="submit" name="delete_selected" class="btn btn-danger">Delete Selected</button>
                     
+					</div>
+				</div>
+			</div>
+            
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="selectAll">
+								<label for="selectAll"></label>
+							</span>
+						</th>
+						<th>Purchase_Orders_id</th>
+						<th>Purchase_Orders_Items_id</th>
+						<th>supplier_id</th>
+                        <th>order_date</th>
+                        <th>status_id</th>
+                        <th>Action</th>
+					</tr>
+				</thead>
+                
+				<tbody>
+                        <?php
+                        $conn=(new PurchaseOrdersReadModel())->purchaseOrdersRead();
+                        foreach ($conn as $row): ?>
+                            <tr>
+                                <td>
+                                    <span class="custom-checkbox">
+                                        <input type="checkbox" id="<?=htmlspecialchars($row['Purchase_Orders_id']);?>" name="options[]" value="<?=htmlspecialchars($row['Purchase_Orders_id']);?>">
+                                        <label for="checkbox1<?=htmlspecialchars($row['Purchase_Orders_id']);?>"></label>
+                                    </span>
+                                </td>
 
-                    <div class="row mb-2">
+                                <td><?=htmlspecialchars($row['Purchase_Orders_id']);?></td>
+                                <td><?=htmlspecialchars($row['Purchase_Orders_Items_id']);?></td>
+                                <td title="<?=htmlspecialchars($row['supplier_name'])?>"><?=htmlspecialchars($row['supplier_id']);?></td>
+                                <td><?=htmlspecialchars($row['order_date']);?></td>
+                                <td title="<?=htmlspecialchars($row['status_name'])?>" ><?=htmlspecialchars($row['status_id'])?></td>
+                           
 
-                         <div class="col">
-                        <label for="order_date" class="form-label">Order Date</label>
-                        <input type="date" class="form-control form-control-sm" name="order_date" id="order_date">
-                        </div>
+                                <td> 
+                                    <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <form method="POST" style="display:inline;">
+                                        <input type="hidden" name="Purchase_Orders_id" value="<?= htmlspecialchars($row['Purchase_Orders_id']); ?>">
+                                        <button type="submit" name="delete_purchaseOrders" class="btn btn-link p-0 m-0" onclick="return confirm('Are you sure you want to delete this customer?');">
+                                            <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach;?>
+				</tbody>
+			</table>
+             
+            </form>
+<!--End fot Read Customers-->
 
+			<div class="clearfix">
+				<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+				<ul class="pagination">
+					<li class="page-item disabled"><a href="#">Previous</a></li>
+					<li class="page-item"><a href="#" class="page-link">1</a></li>
+					<li class="page-item"><a href="#" class="page-link">2</a></li>
+					<li class="page-item active"><a href="#" class="page-link">3</a></li>
+					<li class="page-item"><a href="#" class="page-link">4</a></li>
+					<li class="page-item"><a href="#" class="page-link">5</a></li>
+					<li class="page-item"><a href="#" class="page-link">Next</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>        
+</div>
+<!-- Create Modal HTML -->
+<div id="addCustomerModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form method="POST" id="formaction">
 
-                         <div class="col">
-                        <label for="status_id" class="form-label">Status ID</label>
-                        <select class="form-select" name="status_id" id="status_id">
-                        
-                        <option value="" selected disabled>Select Status ID</option>
+				<div class="modal-header">						
+					<h4 class="modal-title">Add Purchase Orders</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="bi bi-x"></i></button>
+				</div>
 
-                        <?php foreach($status as $row):?>
-                            <option value="<?=htmlspecialchars($row['status_id'])?>">
-                                <?=htmlspecialchars($row['status_name'])?>
-                            </option>
-                            <?php endforeach?>
+				<div class="modal-body">					
+					<div class="form-group">
+						<label>Purchase Orders ID</label>
+						<input type="text" class="form-control" name="Purchase_Orders_id" id="Purchase_Orders_id" required>
+					</div>
 
+					<div class="form-group">
+						<label class="form-label">Purchase Orders Items ID</label>
+						<select class="form-select" name="Purchase_Orders_Items_id" id="Purchase_Orders_Items_id">
+                            <option value="" selected disabled>Select Purchase Orders Items ID</option>
+                            <?php foreach($poi as $row):?>
+                                <option value="<?=htmlspecialchars($row['Purchase_Orders_Items_id'])?>">
+                                    <?=htmlspecialchars($row['Purchase_Orders_Items_id'])?>
+                                </option>
+                                <?php endforeach;?>
                         </select>
-                        
-                        </div>
+					</div>
+
+					<div class="form-group">
+						<label class="form-label">Supplier ID</label>
+                        <select class="form-select" name="supplier_id" id="supplier_id">
+                                <option value="" selected disabled>Select Product ID</option>
+                                <?php foreach($suppliers as $row):?>
+                                    <option value="<?=htmlspecialchars($row['supplier_id'])?>">
+                                        <?=htmlspecialchars($row['supplier_name'])?>
+                                    </option>
+                                    <?php endforeach;?>
+                        </select>
+					</div>		
+
+                    <div class="form-group">
+                        <label class="form-label">Order Date</label>
+                        <input type="date" class="form-control form-date" name="order_date" id="order_date">       
                     </div>
-                    <!-- More rows and inputs here -->
-                    <div class="d-flex justify-content-between p-3">
-                    <button type="submit" name="add_purchase" class="btn btn-primary btn-md">Add Purchase Orders</button>
-                    <a href="index.php?page=PurchaseOrdersItems" class="btn btn-primary btn-md">Click to Add Product Variants</a>
+
+
+                    <div class="form-group">
+                        <label class="form-label">Status ID</label>
+                        <select name="status_id" id="status_id" class="form-select">
+                            <option value="" selected disabled>Select Status ID</option>
+                            <?php foreach($status as $column):?>
+                                <option value="<?=htmlspecialchars($column['status_id'])?>">
+                                    <?=htmlspecialchars($column['status_name'])?>
+                                </option>
+                                <?php endforeach;?>
+                        </select>            
                     </div>
-                    
-                    </form>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-success" name="add_purchase" value="Add">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!--Create Customers Modal-->
+
+<!-- Edit Modal HTML -->
+<div id="editEmployeeModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form method="POST" id="formaction">
+				<div class="modal-header">						
+					<h4 class="modal-title">Edit Customers</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">					
+					<div class="form-group">
+						<label>Purchase Orders ID</label>
+						<input type="text" class="form-control" name="Purchase_Orders_id" id="Purchase_Orders_id" required>
+					</div>
+
+					<div class="form-group">
+						<label class="form-label">Purchase Orders Items ID</label>
+						<select class="form-select" name="Purchase_Orders_Items_id" id="Purchase_Orders_Items_id">
+                            <option value="" selected disabled>Select Purchase Orders Items ID</option>
+                            <?php foreach($poi as $row):?>
+                                <option value="<?=htmlspecialchars($row['Purchase_Orders_Items_id'])?>">
+                                    <?=htmlspecialchars($row['Purchase_Orders_Items_id'])?>
+                                </option>
+                                <?php endforeach;?>
+                        </select>
+					</div>
+
+					<div class="form-group">
+						<label class="form-label">Supplier ID</label>
+                        <select class="form-select" name="supplier_id" id="supplier_id">
+                                <option value="" selected disabled>Select Product ID</option>
+                                <?php foreach($suppliers as $row):?>
+                                    <option value="<?=htmlspecialchars($row['supplier_id'])?>">
+                                        <?=htmlspecialchars($row['supplier_name'])?>
+                                    </option>
+                                    <?php endforeach;?>
+                        </select>
+					</div>		
+
+                    <div class="form-group">
+                        <label class="form-label">Order Date</label>
+                        <input type="date" class="form-control form-date" name="order_date" id="order_date">       
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="form-label">Status ID</label>
+                        <select name="status_id" id="status_id" class="form-select">
+                            <option value="" selected disabled>Select Status ID</option>
+                            <?php foreach($status as $column):?>
+                                <option value="<?=htmlspecialchars($column['status_id'])?>">
+                                    <?=htmlspecialchars($column['status_name'])?>
+                                </option>
+                                <?php endforeach;?>
+                        </select>            
+                    </div>
                 </div>
-            </div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <input type="submit" class="btn btn-info" name="edit_purchaseOrders" value="Save">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- Delete Modal HTML -->
+<div id="deleteEmployeeModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form method="POST" id="formaction">
+				<div class="modal-header">						
+					<h4 class="modal-title">Delete Employee</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">					
+					<p>Are you sure you want to delete these Records?</p>
+					<p class="text-warning"><small>This action cannot be undone.</small></p>
+                     <input type="hidden" name="payment_id" id="payment_id">
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-danger" name="delete_payment_id"  value="Delete">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>   
 
 <!--form handling end here-->
+
 
                 </main>
                 <footer class="py-4 bg-light mt-auto">
@@ -277,6 +429,12 @@
                 </footer>
             </div>
         </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="assets/js/scripts.js"></script>
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>

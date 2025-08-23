@@ -163,7 +163,7 @@
                                 End of Day Summary 
                             </div>
                             <div class="card-body">
-                                <table id="datatablesSimple">
+                                <table id="datableSimple">
                                      <table class="table table-bordered table-striped">
                                          <thead class="table-dark">
                                             <tr>

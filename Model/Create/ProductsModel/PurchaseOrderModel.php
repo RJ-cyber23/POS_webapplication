@@ -2,6 +2,7 @@
     require_once 'core/database.php';
     class PurchaseOrderModel
     {
+        
         public function purchase_order_model($data)
         {
 

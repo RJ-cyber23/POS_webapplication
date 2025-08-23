@@ -1,6 +1,7 @@
 <?php
     require_once 'controller/create/CustomerController/PaymentControllerAdd.php';
     require_once 'controller/create/CustomerController/CustomerControllerAdd.php';
+    
     $payment=new PaymentControllerAdd();
     $customer=new CustomerControllerAdd();
     

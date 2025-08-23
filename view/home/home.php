@@ -21,7 +21,7 @@
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle"><i class="fas fa-bars"></i></button>
         
 
-            <a class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 text-secondary" href=""><i class="bi bi-eye fs-5"></i></a>
+            <a class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 text-secondary" href="index.php?page=Customer"><i class="bi bi-eye fs-5"></i></a>
 
 
              

@@ -8,7 +8,8 @@
         <meta name="author" content="" />
         <title>Dashboard-Home</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link href="Style/bootstrap.css" rel="stylesheet" />
+        <link href="Style/bootstrap.css" rel="stylesheet" />    <link rel="stylesheet" href="assets/MyownCSS/css.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
@@ -161,85 +162,227 @@
                 <?php if (isset($error)) : ?>
                     <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
                 <?php endif; ?>
+
 <!--Error message end here-->
 
-<!--hero section-->
-                <div class="container-solid py- rounded-5 ">
-                        <div class="p-5 mb-4 lc-block">
-                            <div class="lc-block">
-                                <div editable="rich">
-                                    <h3><i class="bi bi-box-seam me-2 fs-1"></i>Add Sales</h3>
-                                </div>
-                            </div>
-<!--hero section end-->
 
+<!--Read Customers-->
+<form method="POST" id="formaction">
+       <div class="container-fluid">
+	<div class="table-responsive">
+		<div class="table-wrapper">
+			<div class="table-title">
+				<div class="row">
+					<div class="col-sm-6">
+						<h2>Manage <b>Invoices</b></h2>
+					</div>
+					<div class="col-sm-6">
+						<a href="#addCustomerModal" class="btn btn-primary" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Customers</span></a>
+					<button type="submit" name="delete_selected" class="btn btn-danger">Delete Selected</button>
+					</div>
+				</div>
+			</div>
+            
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="selectAll">
+								<label for="selectAll"></label>
+							</span>
+						</th>
+						<th>invoice_id</th>
+						<th>customer_id</th>
+						<th>invoice_date</th>
+                        <th>user_id</th>
+                        <th>Action</th>
+					</tr>
+				</thead>
+                
+				<tbody>
+                        <?php
+                        $conn=(new InvoicesReadModel())->invoicesRead();
+                        foreach ($conn as $row): ?>
+                            <tr>
+                                <td>
+                                    <span class="custom-checkbox">
+                                        <input type="checkbox" id="<?=htmlspecialchars($row['invoice_id']);?>" name="options[]" value="<?=htmlspecialchars($row['invoice_id']);?>">
+                                        <label for="checkbox1<?=htmlspecialchars($row['invoice_id']);?>"></label>
+                                    </span>
+                                </td>
 
-<!--form handling-->
-            <div class="container-solid d-flex justify-content-center mt-4">
-                <div style="max-width: 800px; width: 100%;">
+                                <td><?=htmlspecialchars($row['invoice_id']);?></td>
+                                <td><?=htmlspecialchars($row['customer_id']);?></td>
+                                <td><?=htmlspecialchars($row['invoice_date']);?></td>
+                                <td><?=htmlspecialchars($row['user_id']);?></td>
+                           
 
-                    <form method="POST" id="formaction"><!--Request Method as POST-->
-                    <div class="row mb-2">
-                        <div class="col">
+                                <td> 
+                                    <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <form method="POST" style="display:inline;">
+                                        <input type="hidden" name="invoice_id" value="<?= htmlspecialchars($row['invoice_id']); ?>">
+                                        <button type="submit" name="delete_invoice" class="btn btn-link p-0 m-0" onclick="return confirm('Are you sure you want to delete this customer?');">
+                                            <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach;?>
+				</tbody>
+			</table>
+             
+            </form>
+<!--End fot Read Customers-->
 
-                            <label for="invoice_id" class="form-label">Invoices ID</label>
-                            <input type="text" class="form-control form-control-sm" name="invoice_id" id="invoice_id">
-                            
+			<div class="clearfix">
+				<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+				<ul class="pagination">
+					<li class="page-item disabled"><a href="#">Previous</a></li>
+					<li class="page-item"><a href="#" class="page-link">1</a></li>
+					<li class="page-item"><a href="#" class="page-link">2</a></li>
+					<li class="page-item active"><a href="#" class="page-link">3</a></li>
+					<li class="page-item"><a href="#" class="page-link">4</a></li>
+					<li class="page-item"><a href="#" class="page-link">5</a></li>
+					<li class="page-item"><a href="#" class="page-link">Next</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>        
+</div>
+<!-- Create Modal HTML -->
+<div id="addCustomerModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form method="POST" id="formaction">
+
+				<div class="modal-header">						
+					<h4 class="modal-title">Add Invoices</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="bi bi-x"></i></button>
+				</div>
+
+				<div class="modal-body">					
+					<div class="form-group">
+						<label>Invoices ID</label>
+						<input type="text" class="form-control" name="invoice_id" id="invoice_id" required>
+					</div>
+
+					<div class="form-group">
+						<label class="form-label">Select Customers ID</label>
+						<select class="form-select" name="customer_id" id="customer_id">
+                            <option value="" selected disabled>Select Customers ID</option>
+                            <?php foreach($customers as $row):?>
+                                <option value="<?=htmlspecialchars($row['customer_id'])?>">
+                                    <?=htmlspecialchars($row['customer_name'])?>
+                                </option>
+                                <?php endforeach;?>
+                        </select>
+					</div>
+
+					<div class="form-group">
+						<label class="form-label">Invoice Date</label>
+                        <input type="date" class="form-control" name="invoice_date" id="invoice_date">
+					</div>		
+
+                    <div class="form-group">
+                                    <label class="form-label">Users</label>
+                                    <select class="form-select" name="user_id" id="users_id">
+                                        <option value="" selected disabled>Select Users</option>
+                                        <?php foreach($users as $row):?>
+                                            <option value="<?=htmlspecialchars($row['user_id'])?>">
+                                               <?=htmlspecialchars($row['username'])?>
+                                            </option>
+                                            <?php endforeach;?>
+                                    </select>
+                    </div>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-success" name="add_invoice" value="Add">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!--Create Customers Modal-->
+
+<!-- Edit Modal HTML -->
+<div id="editEmployeeModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form method="POST" id="formaction">
+				<div class="modal-header">						
+					<h4 class="modal-title">Edit Customers</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">									
+                        <div class="form-group">
+                            <label>Invoices ID</label>
+                            <input type="text" class="form-control" name="invoice_id" id="invoice_id">
                         </div>
 
-                         <div class="col">
-                            <label for="customer_id" class="form-label">Customers ID</label>
-                            <select class="form-select" name="customer_id" id="customer_id" required>
-
-                            <option value="" selected disabled>Select Product ID</option>
-
-                            <?php foreach ($customers as $row): ?>
-
-                            <option value="<?= htmlspecialchars($row['customer_id']) ?>">
-
-                            <?= htmlspecialchars($row['customer_name']) ?>
-
-                            </option>
-                            <?php endforeach; ?>
+                        <div class="form-group">
+                            <label class="form-label">Select Customers ID</label>
+                            <select class="form-select" name="customer_id" id="customer_id">
+                                <option value="" selected disabled>Select Customers ID</option>
+                                <?php foreach($customers as $row):?>
+                                    <option value="<?=htmlspecialchars($row['customer_id'])?>">
+                                        <?=htmlspecialchars($row['customer_name'])?>
+                                    </option>
+                                    <?php endforeach;?>
                             </select>
                         </div>
 
-                      
+                        <div class="form-group">
+                            <label class="form-label">Invoice Date</label>
+                            <input type="date" class="form-control" name="invoice_date" id="invoice_date">
+                        </div>		
 
-                       <div class="col">
-                          <label for="invoice_date" class="form-label">Invoice Date</label>
-                          <input type="date" class="form-control form-control-sm" name="invoice_date" id="invoice_date">
-                        </div>
+                        <div class="form-group">
+                                        <label class="form-label">Users</label>
+                                        <select class="form-select" name="user_id" id="user_id">
+                                            <option value="" selected disabled>Select Users</option>
+                                            <?php foreach($users as $row):?>
+                                                <option value="<?=htmlspecialchars($row['user_id'])?>">
+                                                <?=htmlspecialchars($row['username'])?>
+                                                </option>
+                                                <?php endforeach;?>
+                                        </select>
                     </div>
-                        
-
-                    <div class="row mb-2">
-                        
-                        <div class="col" style="max-width: 800px; width=50%;">
-                        <label for="user_id" class="form-label">Users ID</label>
-                        <select class="form-select" name="user_id" id="user_id">
-                            <option value="" selected disabled>Select Variant ID</option>
-                            <?php foreach($users as $row): ?>
-                                <option value="<?=htmlspecialchars($row['user_id'])?>">
-                                    <?=htmlspecialchars($row['username'])?>
-                                </option>
-                                <?php endforeach; ?>
-
-                        </select>
-                        </div>
-               
-
-                    </div>
-                    <!-- More rows and inputs here -->
-                    <div>
-                    <button type="submit" name="add_sales" class="btn btn-primary btn-md">Enter</button>
-                    </div>
-                    
-                    </form>
                 </div>
-            </div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-info" name="edit_invoices" value="Save">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- Delete Modal HTML -->
+<div id="deleteEmployeeModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form method="POST" id="formaction">
+				<div class="modal-header">						
+					<h4 class="modal-title">Delete Employee</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">					
+					<p>Are you sure you want to delete these Records?</p>
+					<p class="text-warning"><small>This action cannot be undone.</small></p>
+                     <input type="hidden" name="payment_id" id="payment_id">
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-danger" name="delete_payment_id"  value="Delete">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>   
 
 <!--form handling end here-->
+
 
                 </main>
                 <footer class="py-4 bg-light mt-auto">
@@ -256,6 +399,12 @@
                 </footer>
             </div>
         </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="assets/js/scripts.js"></script>
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>

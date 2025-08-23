@@ -9,6 +9,8 @@
         <title>Dashboard-Home</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="Style/bootstrap.css" rel="stylesheet" />
+        <link rel="stylesheet" href="assets/MyownCSS/css.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
@@ -153,76 +155,211 @@
             <div id="layoutSidenav_content">
                 <main>
 <!--Error message-->
-
-                 <?php if (isset($success)) : ?>
+<div class="container-solid">
+                <?php if (isset($success)) : ?>
                 <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
                 <?php endif; ?>
 
                 <?php if (isset($error)) : ?>
                     <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
                 <?php endif; ?>
+</div>
+                 
+
 <!--Error message end here-->
 
-<!--hero section-->
-                <div class="container-solid py- rounded-5 ">
-                        <div class="p-5 mb-4 lc-block">
-                            <div class="lc-block">
-                                <div editable="rich">
-                                    <h3><i class="bi bi-box-seam me-2 fs-1"></i>Add Customers</h3>
-                                </div>
-                            </div>
-<!--hero section end-->
 
+<!--Read Customers-->
+<form method="POST" id="formaction">
+       <div class="container-fluid">
+	<div class="table-responsive">
+		<div class="table-wrapper">
+			<div class="table-title">
+				<div class="row">
+					<div class="col-sm-6">
+						<h2>Manage <b>Customers</b></h2>
+					</div>
+					<div class="col-sm-6">
+						<a href="#addCustomerModal" class="btn btn-primary" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Customers</span></a>
+					<button type="submit" name="delete_selected" class="btn btn-danger">Delete Selected</button>
+					</div>
+				</div>
+			</div>
+            
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="selectAll">
+								<label for="selectAll"></label>
+							</span>
+						</th>
+						<th>customer_id</th>
+						<th>customer_name</th>
+						<th>customer_code</th>
+                        <th>contact</th>
+                        <th>Address</th>
+                        <th>Action</th>
+					</tr>
+				</thead>
+                
+				<tbody>
+                        <?php
+                        $conn=(new CustomerReadModel())->getAll();
+                        foreach ($conn as $row): ?>
+                            <tr>
+                                <td>
+                                    <span class="custom-checkbox">
+                                        <input type="checkbox" id="<?=htmlspecialchars($row['customer_id']);?>" name="options[]" value="<?=htmlspecialchars($row['customer_id']);?>">
+                                        <label for="checkbox1<?=htmlspecialchars($row['customer_id']);?>"></label>
+                                    </span>
+                                </td>
 
-<!--form handling-->
-            <div class="container-solid d-flex justify-content-center mt-4">
-                <div style="max-width: 800px; width: 100%;">
+                                <td><?=htmlspecialchars($row['customer_id']);?></td>
+                                <td><?=htmlspecialchars($row['customer_name']);?></td>
+                                <td><?=htmlspecialchars($row['customer_code']);?></td>
+                                <td><?=htmlspecialchars($row['contact']);?></td>
+                                <td><?=htmlspecialchars($row['address']);?></td>
 
-                    <form method="POST" id="formaction"><!--Request Method as POST-->
-                    <div class="row mb-2">
-                        <div class="col">
-                            <label for="customer_id" class="form-label">Customers ID</label>
-                            <input type="text" class="form-control form-control-sm" name="customer_id" id="customer_id">
-                            
-                        </div>
+                                <td> 
+                                    <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <form method="POST" style="display:inline;">
+                                        <input type="hidden" name="customer_id" value="<?= htmlspecialchars($row['customer_id']); ?>">
+                                        <button type="submit" name="delete_customer" class="btn btn-link p-0 m-0" onclick="return confirm('Are you sure you want to delete this customer?');">
+                                            <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach;?>
+				</tbody>
+			</table>
+             
+            </form>
+<!--End fot Read Customers-->
 
-                         <div class="col">
-                            <label for="customer_name" class="form-label">Customer Name</label>
-                            <input type="text" class="form-control form-control-sm" name="customer_name" id="customer_name">
-                        </div>
+			<div class="clearfix">
+				<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+				<ul class="pagination">
+					<li class="page-item disabled"><a href="#">Previous</a></li>
+					<li class="page-item"><a href="#" class="page-link">1</a></li>
+					<li class="page-item"><a href="#" class="page-link">2</a></li>
+					<li class="page-item active"><a href="#" class="page-link">3</a></li>
+					<li class="page-item"><a href="#" class="page-link">4</a></li>
+					<li class="page-item"><a href="#" class="page-link">5</a></li>
+					<li class="page-item"><a href="#" class="page-link">Next</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>        
+</div>
+<!-- Create Modal HTML -->
+<div id="addCustomerModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form method="POST" id="formaction">
 
-                      
+				<div class="modal-header">						
+					<h4 class="modal-title">Add Customers</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="bi bi-x"></i></button>
+				</div>
 
-                       <div class="col">
-                            <label for="customer_code" class="form-label">Customer Code</label>
-                            <input type="text" class="form-control form-control-sm" name="customer_code" id="customer_code">
-                        </div>
-                    </div>
-                        
+				<div class="modal-body">					
+					<div class="form-group">
+						<label>Customer ID</label>
+						<input type="text" class="form-control" name="customer_id" id="customer_id" required>
+					</div>
+					<div class="form-group">
+						<label>Customer Name</label>
+						<input type="text" class="form-control" name="customer_name" id="customer_name" required>
+					</div>
+					<div class="form-group">
+						<label class="form-label">Customer Code</label>
+						<input type="text" class="form-control" name="customer_code" id="customer_code" required>
+					</div>
+					<div class="form-group">
+						<label>Contact</label>
+						<input type="number" class="form-control" name="contact" id="contact" required>
+					</div>	
 
-                    <div class="row mb-2">
-                        
-                        <div class="col">
-                        <label for="contact" class="form-label">Contact</label>
-                       <input type="text" class="form-control form-control-sm" name="contact" id="contact">
-                        </div>
-               
+                    <div class="form-group">
+						<label>Address</label>
+						<input type="text" class="form-control" name="address" id="address" required>
+					</div>				
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-success" name="add_customer" value="Add">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!--Create Customers Modal-->
 
-                        <div class="col">
-                        <label for="address" class="form-label">Address</label>
-                        <input type="text"  class="form-control form-control-sm"  name="address" id="address">
-                   
-                        </div>
-                        
-                    </div>
-                    <!-- More rows and inputs here -->
-                    <div>
-                    <button type="submit" name="add_customer" class="btn btn-primary btn-md">Enter</button>
-                    </div>
-                    
-                    </form>
-                </div>
-            </div>
+<!-- Edit Modal HTML -->
+<div id="editEmployeeModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form method="POST" id="formaction">
+				<div class="modal-header">						
+					<h4 class="modal-title">Edit Customers</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">					
+					<div class="form-group">
+						<label>Customer ID</label>
+						<input type="text" class="form-control" name="customer_id" id="customer_id">
+					</div>
+					<div class="form-group">
+						<label>Customer Name</label>
+						<input type="text" class="form-control" name="customer_name" id="customer_name">
+					</div>
+					<div class="form-group">
+						<label>Customer Code</label>
+						<input type="number" class="form-control" name="customer_code" id="customer_code">
+					</div>
+					<div class="form-group">
+						<label>Contact</label>
+						<input type="number" class="form-control" name="contact" id="contact" >
+					</div>	
+
+                    <div class="form-group">
+						<label>Address</label>
+						<input type="text" class="form-control" name="address" id="address" >
+					</div>				
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-info" name="add_customeredit" value="Save">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- Delete Modal HTML -->
+<div id="deleteEmployeeModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form method="POST" id="formaction">
+				<div class="modal-header">						
+					<h4 class="modal-title">Delete Employee</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">					
+					<p>Are you sure you want to delete these Records?</p>
+					<p class="text-warning"><small>This action cannot be undone.</small></p>
+                     <input type="hidden" name="customer_id" id="delete_customer_id">
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-danger" name="delete_customer"  value="Delete">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>   
 
 <!--form handling end here-->
 
@@ -241,6 +378,10 @@
                 </footer>
             </div>
         </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="assets/js/scripts.js"></script>
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>

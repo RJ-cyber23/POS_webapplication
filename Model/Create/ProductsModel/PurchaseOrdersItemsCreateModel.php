@@ -1,6 +1,6 @@
 <?php
 require_once 'core/database.php';
-    class PurchaseOrdersItemsModel
+    class PurchaseOrdersItemsCreateModel
     {
         public function purchase_order_items_model($data)
         {

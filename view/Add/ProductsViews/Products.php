@@ -8,7 +8,8 @@
         <meta name="author" content="" />
         <title>Dashboard-Home</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link href="Style/bootstrap.css" rel="stylesheet" />
+        <link href="Style/bootstrap.css" rel="stylesheet" />    <link rel="stylesheet" href="assets/MyownCSS/css.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
@@ -55,11 +56,11 @@
                                <div class="sb-nav-link-icon"><i class="bi bi-basket3-fill text-white "></i></div>
                                 Basket
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
+                                </a>
 
                                 
                                 <div class="collapse" id="collapseAdd" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
+                              <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="index.php?page=Add Product"><i class="bi bi-cart4 me-2"></i>Add Products</a>
                                     <a class="nav-link" href="index.php?page=Purchase"><i class="bi bi-box-seam me-2"></i>Purchase Order</a>
                                     <a class="nav-link" href="index.php?page=Payment Breakdown">Payment Breakdown</a>
@@ -153,125 +154,291 @@
             <div id="layoutSidenav_content">
                 <main>
 <!--Error message-->
+
                 <?php if (isset($success)) : ?>
-                <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
+                    <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
                 <?php endif; ?>
 
                 <?php if (isset($error)) : ?>
                     <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
                 <?php endif; ?>
+
 <!--Error message end here-->
 
-<!--hero section-->
-                <div class="container-solid py- rounded-5 ">
-                        <div class="p-5 mb-4 lc-block">
-                            <div class="lc-block">
-                                <div editable="rich">
-                                    <h3><i class="bi bi-cart me-2 fs-1 "></i>Add Products</h3>
-                                </div>
-                            </div>
-<!--her section-->
 
+<!--Read Customers-->
+<form method="POST" id="formaction">
+       <div class="container-fluid">
+	<div class="table-responsive">
+		<div class="table-wrapper">
+			<div class="table-title">
+				<div class="row">
+					<div class="col-sm-6">
+						<h2>Manage <b>Products</b></h2>
+					</div>
+					<div class="col-sm-6">
+                    <a class="btn btn-primary" href="index.php?page=ProductsVariants" role="button">Next</a>
+						<a href="#addCustomerModal" class="btn btn-primary" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Customers</span></a>
+					<button type="submit" name="delete_selected" class="btn btn-danger">Delete Selected</button>
+					</div>
+				</div>
+			</div>
+            
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="selectAll">
+								<label for="selectAll"></label>
+							</span>
+						</th>
+						<th>product_id</th>
+						<th>product_name</th>
+						<th>product_code</th>
+                        <th>description</th>
+                        <th>category_id</th>
+                        <th>brand_id</th>
+                        <th>supplier_id</th>
+                        <th>Action</th>
+					</tr>
+				</thead>
+                
+				<tbody>
+                        <?php
+                        $conn=(new ProductsReadModel())->productsRead();
+                        foreach ($conn as $row): ?>
+                            <tr>
+                                <td>
+                                    <span class="custom-checkbox">
+                                        <input type="checkbox" id="<?=htmlspecialchars($row['product_id']);?>" name="options[]" value="<?=htmlspecialchars($row['product_id']);?>">
+                                        <label for="checkbox1<?=htmlspecialchars($row['product_id']);?>"></label>
+                                    </span>
+                                </td>
 
-<!--form handling-->
-            <div class="container-solid d-flex justify-content-center mt-4">
-                <div style="max-width: 800px; width: 100%;">
+                                <td><?=htmlspecialchars($row['product_id']);?></td>
+                                <td><?=htmlspecialchars($row['product_name']);?></td>
+                                <td><?=htmlspecialchars($row['product_code']);?></td>
+                                <td><?=htmlspecialchars($row['description']);?></td>
+                                <td><?=htmlspecialchars($row['category_id']);?></td>
+                                <td><?=htmlspecialchars($row['brand_id'])?></td>
+                                <td><?=htmlspecialchars($row['supplier_id'])?></td>
+                           
 
-                    <form method="POST" id="formaction"><!--Request Method as POST-->
-                    <div class="row mb-2">
-                        
-                        <div class="col">
+                                <td> 
+                                    <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <form method="POST" style="display:inline;">
+                                        <input type="hidden" name="product_id" value="<?= htmlspecialchars($row['product_id']); ?>">
+                                        <button type="submit" name="delete_products" class="btn btn-link p-0 m-0" onclick="return confirm('Are you sure you want to delete this customer?');">
+                                            <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach;?>
+				</tbody>
+                
+			</table>
+            </form>
+<!--End fot Read Customers-->
 
-                            <label for="product_name" class="form-label">Product ID</label>
-                            <input type="text" class="form-control form-control-sm" name="product_name" id="product_name">
-                            
-                        </div>
+			<div class="clearfix">
+				<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+				<ul class="pagination">
+					<li class="page-item disabled"><a href="#">Previous</a></li>
+					<li class="page-item"><a href="#" class="page-link">1</a></li>
+					<li class="page-item"><a href="#" class="page-link">2</a></li>
+					<li class="page-item active"><a href="#" class="page-link">3</a></li>
+					<li class="page-item"><a href="#" class="page-link">4</a></li>
+					<li class="page-item"><a href="#" class="page-link">5</a></li>
+					<li class="page-item"><a href="#" class="page-link">Next</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>        
+</div>
+<!-- Create Modal HTML -->
+<div id="addCustomerModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form method="POST" id="formaction">
 
-                        <div class="col">
-                        <label for="product_name" class="form-label">Product Name</label>
-                        <input type="text" class="form-control form-control-sm" name="product_name" id="product_name">
-                        </div>
+				<div class="modal-header">						
+					<h4 class="modal-title">Add Products</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="bi bi-x"></i></button>
+				</div>
 
-                        <div class="col">
-                        <label for="product_code" class="form-label">Product Code</label>
-                        <input type="text" class="form-control form-control-sm" name="product_code" id="product_code">
-                        </div>
+				<div class="modal-body">					
+					<div class="form-group">
+						<label class="form-label">Products ID</label>
+						<input type="text" class="form-control" name="product_id" id="product_id" required>
+					</div>
+
+					<div class="form-group">
+						<label class="form-label">Products Name</label>
+                        <input type="text" class="form-control" name="product_name" id="product_name">
+					</div>
+
+					<div class="form-group">
+						<label class="form-label">Products Code</label>
+                        <input type="text" class="form-control" name="product_code" id="product_id">
+					</div>		
+
+                    <div class="form-group">
+                        <label class="form-label">Descriptions</label>
+                        <textarea class="form-control" name="description" id="description"></textarea>
                     </div>
 
-                    <div class="row mb-2">
-                         <div class="col">
-                            <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control" id="description" name="description" rows="2"></textarea>
-                        </div>
-                    </div>
 
-                    <div class="row mb-2">
-                        <div class="col">
-                            <label for="category" class="form-label">Category ID</label>
-                            <select class="form-select" name="category_id" id="category" required>
-
-                            <option value="" selected disabled>Select Category</option>
-
-                            <?php foreach ($categories as $category): ?>
-
-                            <option value="<?= htmlspecialchars($category['category_id']) ?>">
-
-                            <?= htmlspecialchars($category['category_name']) ?>
-
+                    <div class="form-group">
+                        <label class="form-label">Categories ID</label>
+                        <select class="form-select" name="category_id" id="category_id">
+                         <option value="" selected disabled>Select Categories ID</option>
+                         <?php foreach($categories as $column): ?>
+                            <option value="<?=htmlspecialchars($column['category_id'])?>">
+                                <?=htmlspecialchars($column['category_name'])?>
                             </option>
-                            <?php endforeach; ?>
-                            </select>
-                        </div>
-
-                        <div class="col">
-                            <label for="brand" class="form-label">Brand ID</label>
-                            <select class="form-select" name="brand_id" id="brand" required>
-
-                            <option value="" selected disabled>Select Brands</option>
-
-                            <?php foreach ($brands as $brand): ?>
-
-                            <option value="<?= htmlspecialchars($brand['brand_id']) ?>">
-
-                            <?= htmlspecialchars($brand['brand_name']) ?>
-
-                            </option>
-                            <?php endforeach; ?>
-                            </select>
-                        </div>
-
-                        <div class="col">
-                                <label for="supplier" class="form-label">Supplier ID</label>
-                                <select class="form-select" name="supplier_id" id="Suppliers" required>
-
-                                <option value="" selected disabled>Select Suppliers</option>
-
-                                <?php foreach($suppliers as $supplier): ?>
-
-                                    <option value="<?=htmlspecialchars($supplier['supplier_id'])?>">
-                                        <?=htmlspecialchars($supplier['supplier_name'])?>
-                                    </option>
-
-                                <?php endforeach?>
-                                </select>
-                        </div>
+                        <?php endforeach;?>
+                        </select>            
                     </div>
-                    <!-- More rows and inputs here -->
 
-                   <div class="d-flex justify-content-between p-3">
-                    <button type="submit" name="add_product" class="btn btn-primary btn-md">Enter</button>
-                    <a href="index.php?page=ProductsVariants" class="btn btn-primary btn-md">Click to Add Product Variants</a>
-                    </form>
-                </div>
-            </div>
+                    <div class="form-group">
+                        <label for="brand_id" class="form-label">Brand ID</label>
+                        <select class="form-select" name="brand_id" id="brand_id">
+                            <option value="" selected disabled>Select Brands ID</option>
+                            <?php foreach($brands as $column):?>
+                                 <option value="<?=htmlspecialchars($column['brand_id'])?>">
+                                    <?=htmlspecialchars($column['brand_name'])?>
+                                 </option>
+                                <?php endforeach;?>
+                        </select>
+                    </div>
 
-<!--End line for Add Products-->
+                       <div class="form-group">
+                        <label for="supplier_id" class="form-label">Suppliers ID</label>
+                        <select class="form-select" name="supplier_id" id="supplier_id">
+                            <option value="" selected disabled>Select Users ID</option>
+                            <?php foreach($suppliers as $column):?>
+                                 <option value="<?=htmlspecialchars($column['supplier_id'])?>">
+                                    <?=htmlspecialchars($column['supplier_name'])?>
+                                 </option>
+                                <?php endforeach;?>
+                        </select>
+                    </div>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-success" name="add_product" value="Add">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!--Create Customers Modal-->
 
-<!--Add variants-->
+<!-- Edit Modal HTML -->
+<div id="editEmployeeModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form method="POST" id="formaction">
+				<div class="modal-header">						
+					<h4 class="modal-title">Edit Customers</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
 
-              
-<!--End of Add Variant-->
+                
+				<div class="modal-body">					
+					<div class="form-group">
+						<label class="form-label">Products ID</label>
+						<input type="text" class="form-control" name="product_id" id="product_id" required>
+					</div>
+
+					<div class="form-group">
+						<label class="form-label">Products Name</label>
+                        <input type="text" class="form-control" name="product_name" id="product_name">
+					</div>
+
+					<div class="form-group">
+						<label class="form-label">Products Code</label>
+                        <input type="text" class="form-control" name="product_code" id="product_id">
+					</div>		
+
+                    <div class="form-group">
+                        <label class="form-label">Descriptions</label>
+                        <textarea class="form-control" name="description" id="description"></textarea>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="form-label">Categories ID</label>
+                        <select class="form-select" name="category_id" id="category_id">
+                         <option value="" selected disabled>Select Categories ID</option>
+                         <?php foreach($categories as $column): ?>
+                            <option value="<?=htmlspecialchars($column['category_id'])?>">
+                                <?=htmlspecialchars($column['category_name'])?>
+                            </option>
+                        <?php endforeach;?>
+                        </select>            
+                    </div>
+
+                    <div class="form-group">
+                        <label for="brand_id" class="form-label">Brand ID</label>
+                        <select class="form-select" name="brand_id" id="brand_id">
+                            <option value="" selected disabled>Select Brands ID</option>
+                            <?php foreach($brands as $column):?>
+                                 <option value="<?=htmlspecialchars($column['brand_id'])?>">
+                                    <?=htmlspecialchars($column['brand_name'])?>
+                                 </option>
+                                <?php endforeach;?>
+                        </select>
+                    </div>
+
+                       <div class="form-group">
+                        <label for="supplier_id" class="form-label">Suppliers ID</label>
+                        <select class="form-select" name="supplier_id" id="supplier_id">
+                            <option value="" selected disabled>Select Users ID</option>
+                            <?php foreach($suppliers as $column):?>
+                                 <option value="<?=htmlspecialchars($column['supplier_id'])?>">
+                                    <?=htmlspecialchars($column['supplier_name'])?>
+                                 </option>
+                                <?php endforeach;?>
+                        </select>
+                    </div>
+
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-info" name="edit_products" value="Save">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- Delete Modal HTML -->
+<div id="deleteEmployeeModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form method="POST" id="formaction">
+				<div class="modal-header">						
+					<h4 class="modal-title">Delete Employee</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">					
+					<p>Are you sure you want to delete these Records?</p>
+					<p class="text-warning"><small>This action cannot be undone.</small></p>
+                     <input type="hidden" name="payment_id" id="payment_id">
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-danger" name="delete_payment_id"  value="Delete">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>   
+
 <!--form handling end here-->
+
 
                 </main>
                 <footer class="py-4 bg-light mt-auto">
@@ -288,6 +455,12 @@
                 </footer>
             </div>
         </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="assets/js/scripts.js"></script>
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>

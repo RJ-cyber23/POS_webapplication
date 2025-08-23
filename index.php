@@ -8,6 +8,8 @@ $page = $_GET['page'] ?? 'home';
 
 // Define which router handles which pages
 $routerMap = [
+    
+    
     //Customer Menu Routs
     'CustomerAdd'       =>'routs/Menu/CustomerMenuRouts.php',
     'PaymentAdd'        =>'routs/Menu/CustomerMenuRouts.php',

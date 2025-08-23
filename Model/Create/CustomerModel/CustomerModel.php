@@ -2,6 +2,7 @@
     require_once 'core/database.php';
     class CustomerModel
     {
+        
         public function customerModel($data)
         {   
             $customer_id=$data['customer_id'];

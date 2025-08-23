@@ -8,7 +8,8 @@
         <meta name="author" content="" />
         <title>Dashboard-Home</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link href="Style/bootstrap.css" rel="stylesheet" />
+        <link href="Style/bootstrap.css" rel="stylesheet" />    <link rel="stylesheet" href="assets/MyownCSS/css.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
@@ -59,7 +60,7 @@
 
                                 
                                 <div class="collapse" id="collapseAdd" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
+                              <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="index.php?page=Add Product"><i class="bi bi-cart4 me-2"></i>Add Products</a>
                                     <a class="nav-link" href="index.php?page=Purchase"><i class="bi bi-box-seam me-2"></i>Purchase Order</a>
                                     <a class="nav-link" href="index.php?page=Payment Breakdown">Payment Breakdown</a>
@@ -161,117 +162,293 @@
                 <?php if (isset($error)) : ?>
                     <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
                 <?php endif; ?>
+
 <!--Error message end here-->
 
-<!--hero section-->
-                <div class="container-solid py- rounded-5 ">
-                        <div class="p-5 mb-4 lc-block">
-                            <div class="lc-block">
-                                <div editable="rich">
-                                    <h3><i class="bi bi-cart me-2 fs-1 "></i>Add Products Variants</h3>
-                                </div>
-                            </div>
-<!--her section-->
 
+<!--Read Customers-->
+<form method="POST" id="formaction">
+       <div class="container-fluid">
+	<div class="table-responsive">
+		<div class="table-wrapper">
+			<div class="table-title">
+				<div class="row">
+					<div class="col-sm-6">
+						<h2>Manage <b>Products Variants</b></h2>
+					</div>
+					<div class="col-sm-6">
+                    <a class="btn btn-primary" href="index.php?page=ProductsAdd" role="button">Back</a>
+						<a href="#addCustomerModal" class="btn btn-primary" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Customers</span></a>
+					<button type="submit" name="delete_selected" class="btn btn-danger">Delete Selected</button>
+					</div>
+				</div>
+			</div>
+            
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="selectAll">
+								<label for="selectAll"></label>
+							</span>
+						</th>
+						<th>variant_id</th>
+						<th>product_id</th>
+						<th>size</th>
+                        <th>weight</th>
+                        <th>color</th>
+                        <th>unit_id</th>
+                        <th>base_price</th>
+                        <th>cost_price</th>
+                        <th>current_stock_quantity</th>
+                        <th>Action</th>
+					</tr>
+				</thead>
+                
+				<tbody>
+                        <?php
+                        $conn=(new ProductsVariantsReadModel())->productsVariantsRead();
+                        foreach ($conn as $row): ?>
+                            <tr>
+                                <td>
+                                    <span class="custom-checkbox">
+                                        <input type="checkbox" id="<?=htmlspecialchars($row['variant_id']);?>" name="options[]" value="<?=htmlspecialchars($row['variant_id']);?>">
+                                        <label for="checkbox1<?=htmlspecialchars($row['variant_id']);?>"></label>
+                                    </span>
+                                </td>
 
-<!--form handling-->
-            <div class="container-solid d-flex justify-content-center mt-4">
-                <div style="max-width: 800px; width: 100%;">
+                                <td><?=htmlspecialchars($row['variant_id']);?></td>
+                                <td><?=htmlspecialchars($row['product_id']);?></td>
+                                <td><?=htmlspecialchars($row['size']);?></td>
+                                <td><?=htmlspecialchars($row['weight']);?></td>
+                                <td><?=htmlspecialchars($row['color'])?></td>
+                                <td><?=htmlspecialchars($row['unit_id'])?></td>
+                                <td><?=htmlspecialchars($row['base_price'])?></td>
+                                <td><?=htmlspecialchars($row['cost_price'])?></td>
+                                <td><?=htmlspecialchars($row['current_stock_quantity'])?></td>
+                           
 
-                    <form method="POST" id="formaction"><!--Request Method as POST-->
-                    <div class="row mb-2">
-                        
-                        <div class="col">
+                                <td> 
+                                    <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <form method="POST" style="display:inline;">
+                                        <input type="hidden" name="variant_id" value="<?= htmlspecialchars($row['variant_id']); ?>">
+                                        <button type="submit" name="delete_variants" class="btn btn-link p-0 m-0" onclick="return confirm('Are you sure you want to delete this customer?');">
+                                            <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach;?>
+				</tbody>
+                
+			</table>
+            </form>
+<!--End fot Read Customers-->
 
-                            <label for="variant_id" class="form-label">Variant ID</label>
-                            <input type="text" class="form-control form-control-sm" name="variant_id" id="variant_id">
-                            
-                        </div>
+			<div class="clearfix">
+				<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+				<ul class="pagination">
+					<li class="page-item disabled"><a href="#">Previous</a></li>
+					<li class="page-item"><a href="#" class="page-link">1</a></li>
+					<li class="page-item"><a href="#" class="page-link">2</a></li>
+					<li class="page-item active"><a href="#" class="page-link">3</a></li>
+					<li class="page-item"><a href="#" class="page-link">4</a></li>
+					<li class="page-item"><a href="#" class="page-link">5</a></li>
+					<li class="page-item"><a href="#" class="page-link">Next</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>        
+</div>
+<!-- Create Modal HTML -->
+<div id="addCustomerModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form method="POST" id="formaction">
 
-                         <div class="col">
-                            <label for="product_id" class="form-label">Product ID</label>
-                            <select class="form-select" name="product_id" id="product" required>
+				<div class="modal-header">						
+					<h4 class="modal-title">Add Variants</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="bi bi-x"></i></button>
+				</div>
 
-                            <option value="" selected disabled>Select Product ID</option>
+				<div class="modal-body">					
+					<div class="form-group">
+						<label class="form-label">Variants ID</label>
+						<input type="text" class="form-control" name="variant_id" id="variant_id" required>
+					</div>
 
-                            <?php foreach ($products as $product): ?>
+					<div class="form-group">
+						<label class="form-label">Products ID</label>
+                        <select name="product_id" id="product_id" class="form-select">
+                            <option value="" selected disabled>Select Products ID</option>
+                            <?php foreach($products as $column): ?>
+                                <option value="<?=htmlspecialchars($column['product_id'])?>">
+                                    <?=htmlspecialchars($column['product_name'])?>
+                                </option>
+                                <?php endforeach;?>
+                        </select>
+					</div>
 
-                            <option value="<?= htmlspecialchars($product['product_id']) ?>">
+					<div class="form-group">
+						<label class="form-label">Size</label>
+                        <input type="text" class="form-control" name="size" id="size">
+					</div>		
 
-                            <?= htmlspecialchars($product['product_name']) ?>
-
-                            </option>
-                            <?php endforeach; ?>
-                            </select>
-                        </div>
-
-                      
-
-                        <div class="col">
-                        <label for="size" class="form-label">Size</label>
-                        <input type="text" class="form-control form-control-sm" name="size" id="size">
-                        </div>
+                    <div class="form-group">
+                        <label class="form-label">Weight</label>
+                        <input type="text" class="form-control" name="weight" id="weight">
                     </div>
-                        
-                    
-
-                    <div class="row mb-2">
-
-                         <div class="col">
-                        <label for="weight" class="form-label">Weight</label>
-                        <input type="text" class="form-control form-control-sm" name="weight" id="weight">
-                        </div>
 
 
-                         <div class="col">
-                        <label for="Color" class="form-label">Color</label>
-                        <input type="text" class="form-control form-control-sm" name="color" id="color">
-                        </div>
-
-                        <div class="col">
-                                <label for="unit_id" class="form-label">Unit ID</label>
-                                <select class="form-select" name="unit_id" id="unit" required>
-
-                                <option value="" selected disabled>Select Units</option>
-
-                                <?php foreach($units as $unit): ?>
-
-                                    <option value="<?=htmlspecialchars($unit['unit_id'])?>">
-                                        <?=htmlspecialchars($unit['unit_name'])?>
-                                    </option>
-
-                                <?php endforeach?>
-                                </select>
-                        </div>
+                    <div class="form-group">
+                        <label class="form-label">Color</label>
+                        <input type="text" class="form-control" name="color" id="color">
                     </div>
 
-                    <div class="row mb-2">
-
-                         <div class="col">
-                        <label for="base_price" class="form-label">Base Price</label>
-                        <input type="text" class="form-control form-control-sm" name="base_price" id="base_price">
-                        </div>
-
-
-                         <div class="col">
-                        <label for="cost_price" class="form-label">Cost Price</label>
-                        <input type="text" class="form-control form-control-sm" name="cost_price" id="cose_price">
-                        </div>
-
-                        <div class="col">
-                        <label for="current_stock_quantity" class="form-label">Current Stock Quantity</label>
-                        <input type="text" class="form-control form-control-sm" name="current_stock_quantity" id="current_stock_quantity">
-                        </div>
-
+                    <div class="form-group">
+                        <label for="brand_id" class="form-label">Unit ID</label>
+                        <select class="form-select" name="unit_id" id="unit_id">
+                            <option value="" selected disabled>Select Unit ID</option>
+                            <?php foreach($units as $column):?>
+                                 <option value="<?=htmlspecialchars($column['unit_id'])?>">
+                                    <?=htmlspecialchars($column['unit_name'])?>
+                                 </option>
+                                <?php endforeach;?>
+                        </select>
                     </div>
-                    <!-- More rows and inputs here -->
 
-                    <button type="submit" name="add_variants" class="btn btn-primary btn-md">Enter</button>
-                    </form>
-                </div>
-            </div>
+                    <div class="form-group">
+                        <label for="supplier_id" class="form-label">Base Price</label>
+                        <input type="text" class="form-control" name="base_price" id="base_price">
+                    </div>
+
+                    <div class=form-group>
+                        <label for="cost_price">Cost Price</label>
+                        <input type="text" class="form-control" name="cost_price" id="cost_price">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="current_stock_quantity">Current Stock Quantity</label>
+                        <input type="text" class="form-control" name="current_stock_quantity" id="current_stock_quantity">
+                    </div>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-success" name="add_variants" value="Add">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!--Create Customers Modal-->
+
+<!-- Edit Modal HTML -->
+<div id="editEmployeeModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form method="POST" id="formaction">
+				<div class="modal-header">						
+					<h4 class="modal-title">Edit Customers</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+
+                
+			<div class="modal-body">					
+					<div class="form-group">
+						<label class="form-label">Variants ID</label>
+						<input type="text" class="form-control" name="variant_id" id="variant_id" required>
+					</div>
+
+					<div class="form-group">
+						<label class="form-label">Products ID</label>
+                        <select name="product_id" id="product_id" class="form-select">
+                            <option value="" selected disabled>Select Products ID</option>
+                            <?php foreach($products as $column): ?>
+                                <option value="<?=htmlspecialchars($column['product_id'])?>">
+                                    <?=htmlspecialchars($column['product_name'])?>
+                                </option>
+                                <?php endforeach;?>
+                        </select>
+					</div>
+
+					<div class="form-group">
+						<label class="form-label">Size</label>
+                        <input type="text" class="form-control" name="size" id="size">
+					</div>		
+
+                    <div class="form-group">
+                        <label class="form-label">Weight</label>
+                        <input type="text" class="form-control" name="weight" id="weight">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="form-label">Color</label>
+                        <input type="text" class="form-control" name="color" id="color">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="brand_id" class="form-label">Unit ID</label>
+                        <select class="form-select" name="unit_id" id="unit_id">
+                            <option value="" selected disabled>Select Unit ID</option>
+                            <?php foreach($units as $column):?>
+                                 <option value="<?=htmlspecialchars($column['unit_id'])?>">
+                                    <?=htmlspecialchars($column['unit_name'])?>
+                                 </option>
+                                <?php endforeach;?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="supplier_id" class="form-label">Base Price</label>
+                        <input type="text" class="form-control" name="base_price" id="base_price">
+                    </div>
+
+                    <div class=form-group>
+                        <label for="cost_price">Cost Price</label>
+                        <input type="text" class="form-control" name="cost_price" id="cost_price">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="current_stock_quantity">Current Stock Quantity</label>
+                        <input type="text" class="form-control" name="current_stock_quantity" id="current_stock_quantity">
+                    </div>
+
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-info" name="edit_variants" value="Save">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- Delete Modal HTML -->
+<div id="deleteEmployeeModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form method="POST" id="formaction">
+				<div class="modal-header">						
+					<h4 class="modal-title">Delete Employee</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">					
+					<p>Are you sure you want to delete these Records?</p>
+					<p class="text-warning"><small>This action cannot be undone.</small></p>
+                     <input type="hidden" name="payment_id" id="payment_id">
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-danger" name="delete_payment_id"  value="Delete">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>   
 
 <!--form handling end here-->
+
 
                 </main>
                 <footer class="py-4 bg-light mt-auto">
@@ -288,6 +465,12 @@
                 </footer>
             </div>
         </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="assets/js/scripts.js"></script>
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>

@@ -1,13 +1,12 @@
 <?php
+    require_once 'Model/read/ProductsModelRead/ReceiveProductsReadModel.php';
     require_once 'Model/Create/ProductsModel/ReceiveProductsModel.php';
     class ReceiveProductsAddController
     {
         public function receiveProducts()
         {
             session_start();
-            $success=$_SESSION['success'] ?? null;
-            $error=$_SESSION['error'] ?? null;
-            unset($_SESSION['success'], $_SESSION['error']);
+          
 
             if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['add_receive']))
             {
@@ -22,11 +21,17 @@
                 }
                 header("Location: ". $_SERVER['REQUEST_URI']);
             }
+        
 
             $users=$this->user_id();
             $suppliers=$this->supplier_id();
             $purchase=$this->Purchase_Orders_id();
             $products=$this->product_id();
+
+            $success=$_SESSION['success'] ?? null;
+            $error=$_SESSION['error'] ?? null;
+            unset($_SESSION['success'], $_SESSION['error']);
+            $conn=(new ReceiveProductsReadModel());
             require_once 'view/Add/ProductsViews/ReceiveProducts.php';
         }
         public function product_id()
