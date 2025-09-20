@@ -1,4 +1,6 @@
 <?php
+    require_once 'Model/delete/ProductsDeleteModel/ReceiveProductsDeleteModel.php';
+    require_once 'Model/update/ProductsEditModel/ReceivedProductsEditModel.php';
     require_once 'Model/read/ProductsModelRead/ReceiveProductsReadModel.php';
     require_once 'Model/Create/ProductsModel/ReceiveProductsModel.php';
     class ReceiveProductsAddController
@@ -20,6 +22,35 @@
                     $_SESSION['error']=$conn;
                 }
                 header("Location: ". $_SERVER['REQUEST_URI']);
+                exit;
+            }
+            elseif(isset($_POST['edit_receive_products']))
+            {
+                $conn=(new ReceivedProductsEditModel())->receiveProductEdit($_POST);
+                if($conn===true)
+                {
+                  $_SESSION['success']= "Edited Successfully! ";
+                }else{
+                    $_SESSION['error']= $conn;
+                }
+                header("Location: ". $_SERVER['REQUEST_URI']);
+                exit;
+            }
+            elseif(isset($_POST['delete_receive_product_id']))
+            {
+                $receive_product_id=$_POST['receive_product_id'] ?? null;
+                if($receive_product_id)
+                {
+                    $conn=(new ReceiveProductsDeleteModel())->receiveProductsDelete($receive_product_id);
+                    if($conn===true)
+                    {
+                        $_SESSION['success'] = "Deleted Successfully! ";
+                    }else{
+                        $_SESSION['error'] = $conn;
+                    }
+                } 
+                header("Location: ". $_SERVER['REQUEST_URI']);
+                exit;
             }
         
 

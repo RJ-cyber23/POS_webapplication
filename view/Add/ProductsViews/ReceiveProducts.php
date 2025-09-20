@@ -40,7 +40,7 @@
                 </li>
             </ul>
         </nav>
-        <div id="layoutSidenav">
+      <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
@@ -50,27 +50,57 @@
                                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                     Dashboard Reports
                                 </a>
-
-                            <div class="sb-sidenav-menu-heading ">Add</div>
+<!--Add menu heading-->
+                            <div class="sb-sidenav-menu-heading ">Products Menu</div>
                             <a class="nav-link collapsed bg-success rounded-4" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAdd" aria-expanded="false" aria-controls="collapseLayouts">
                                <div class="sb-nav-link-icon"><i class="bi bi-basket3-fill text-white "></i></div>
-                                Basket
+                                Products
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
 
                                 
                                 <div class="collapse" id="collapseAdd" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                              <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="index.php?page=Add Product"><i class="bi bi-cart4 me-2"></i>Add Products</a>
-                                    <a class="nav-link" href="index.php?page=Purchase"><i class="bi bi-box-seam me-2"></i>Purchase Order</a>
-                                    <a class="nav-link" href="index.php?page=Payment Breakdown">Payment Breakdown</a>
-                                    <a class="nav-link" href="index.php?page=Profit for Products">Profit For Products</a>
-                                    <a class="nav-link" href="index.php?page=Purchase_Orders_Summary">Purchase Order Summary</a>
-                                    <a class="nav-link" href="index.php?page=Sales_Summary">Sales Summary</a>
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="index.php?page=ProductsAdd"><i class="bi bi-cart4 me-2"></i>Add Products</a>
+                                    <a class="nav-link" href="index.php?page=PurchaseOrders"><i class="bi bi-box-seam me-2"></i>Purchase Order</a>
+                                    <a class="nav-link" href="index.php?page=ReceiveProducts">Receive Products</a>
                                 </nav>
                                 </div>
+<!--End Add menu heading-->
+
+<!--Sales menu-->
+                            <div class="sb-sidenav-menu-heading ">Sales Menu</div>
+                            <a class="nav-link collapsed bg-warning rounded-4" href="#" data-bs-toggle="collapse" data-bs-target="#collapseSales" aria-expanded="false" aria-controls="collapseLayouts">
+                               <div class="sb-nav-link-icon"><i class="bi bi-basket3-fill text-white "></i></div>
+                                Sales
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
 
 
+                                <div class="collapse" id="collapseSales" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="index.php?page=SalesAdd"><i class="bi bi-cart4 me-2"></i>Sales</a>
+                                        <a class="nav-link" href="index.php?page=InvoiceAdd"><i class="bi bi-box-seam me-2"></i>Invoice</a>
+                                    </nav>
+                                </div>
+<!--End Sales menu-->
+
+<!--Customer Menu-->
+                            <div class="sb-sidenav-menu-heading ">Customers Menu</div>
+                            <a class="nav-link collapsed bg-primary rounded-4" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCustomer" aria-expanded="false" aria-controls="collapseLayouts">
+                               <div class="sb-nav-link-icon"><i class="bi bi-basket3-fill text-white "></i></div>
+                                Customers
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+
+
+                                <div class="collapse" id="collapseCustomer" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="index.php?page=CustomerAdd"><i class="bi bi-cart4 me-2"></i>Customers</a>
+                                        <a class="nav-link" href="index.php?page=PaymentAdd"><i class="bi bi-box-seam me-2"></i>Payments</a>
+                                    </nav>
+                                </div>
+<!--End Customer Menu-->
 
                             <div class="sb-sidenav-menu-heading">Reports</div>
 
@@ -84,7 +114,7 @@
                                 <div class="collapse" id="collapseReport" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="index.php?page=End_of_Day">End of Day Summary</a>
-                                    <a class="nav-link" href="index.php?page=Inventory Status">Inventory Status</a>
+                                    <a class="nav-link" href="index.php?page=Inventory Status"><i class="bi bi-backpack3-fill me-2"></i>Inventory Status</a>
                                     <a class="nav-link" href="index.php?page=Invoices Total Sales">Invoice Total Sales</a>
                                     <a class="nav-link" href="index.php?page=Payment Breakdown">Payment Breakdown</a>
                                     <a class="nav-link" href="index.php?page=Profit for Products">Profit For Products</a>
@@ -151,6 +181,7 @@
                     </div>
                 </nav>
             </div>
+
             <div id="layoutSidenav_content">
                 <main>
 <!--Error message-->
@@ -174,11 +205,10 @@
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
-						<h2>Manage <b>Purchase Orders Items</b></h2>
+						<h2>Manage <b>Received Products</b></h2>
 					</div>
 					<div class="col-sm-6">
-                        <a href="index.php?page=PurchaseOrders" class="btn btn-primary">Back</a>
-						<a href="#addCustomerModal" class="btn btn-primary" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Customers</span></a>
+						<a href="#addCustomerModal" class="btn btn-primary" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Received Products</span></a>
 					<button type="submit" name="delete_selected" class="btn btn-danger">Delete Selected</button>
                     
 					</div>
@@ -194,11 +224,14 @@
 								<label for="selectAll"></label>
 							</span>
 						</th>
-						<th>Purchase_Orders_Items_id</th>
+						<th>receive_product_id</th>
 						<th>product_id</th>
-						<th>supplier_id</th>
-                        <th>ordered_quantity</th>
-                        <th>purchase_cost_price</th>
+						<th>Purchase_Orders_id</th>
+                        <th>received_quantity</th>
+                        <th>cost_price</th>
+                        <th>supplier_id</th>
+                        <th>received_date</th>
+                        <th>user_id</th>
                         <th>Action</th>
 					</tr>
 				</thead>
@@ -230,7 +263,7 @@
                                     <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                     <form method="POST" style="display:inline;">
                                         <input type="hidden" name="receive_product_id" value="<?= htmlspecialchars($row['receive_product_id']); ?>">
-                                        <button type="submit" name="delete_purchaseOrdersItems" class="btn btn-link p-0 m-0" onclick="return confirm('Are you sure you want to delete this customer?');">
+                                        <button type="submit" name="delete_receive_product_id" class="btn btn-link p-0 m-0" onclick="return confirm('Are you sure you want to delete this customer?');">
                                             <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
                                         </button>
                                     </form>
@@ -265,14 +298,14 @@
 			<form method="POST" id="formaction">
 
 				<div class="modal-header">						
-					<h4 class="modal-title">Add Purchase Orders Items</h4>
+					<h4 class="modal-title">Add Receive Products</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="bi bi-x"></i></button>
 				</div>
 
 				<div class="modal-body">					
 					<div class="form-group">
-						<label>Purchase Orders Items ID</label>
-						<input type="text" class="form-control" name="Purchase_Orders_Items_id" id="Purchase_Orders_Items_id" required>
+						<label>Receive Products ID</label>
+						<input type="text" class="form-control" name="receive_product_id" id="receive_product_id" required>
 					</div>
 
 					<div class="form-group">
@@ -288,30 +321,60 @@
 					</div>
 
 					<div class="form-group">
-						<label class="form-label">Supplier ID</label>
-                        <select class="form-select" name="supplier_id" id="supplier_id">
+						<label class="form-label">Purchase Orders ID</label>
+                        <select class="form-select" name="Purchase_Orders_id" id="Purchase_Orders_id">
                                 <option value="" selected disabled>Select Product ID</option>
-                                <?php foreach($suppliers as $row):?>
-                                    <option value="<?=htmlspecialchars($row['supplier_id'])?>">
-                                        <?=htmlspecialchars($row['supplier_name'])?>
+                                <?php foreach($purchase as $row):?>
+                                    <option value="<?=htmlspecialchars($row['Purchase_Orders_id'])?>">
+                                        <?=htmlspecialchars($row['Purchase_Orders_id'])?>
                                     </option>
                                     <?php endforeach;?>
                         </select>
 					</div>		
 
                     <div class="form-group">
-                        <label class="form-label">Ordered Quantity</label>
-                        <input type="text" class="form-control" name="ordered_quantity" id="ordered_quantity">
+                        <label class="form-label">Received Quantity</label>
+                        <input type="text" class="form-control" name="received_quantity" id="received_quantity">
                     </div> 
                     
                     <div class="form-group">
-                        <label class="form-label">Purchase Cost Price</label>
-                        <input type="text" class="form-control form-date" name="purchase_cost_price" id="purchase_cost_price">       
+                        <label class="form-label">Cost Price</label>
+                        <input type="text" class="form-control form-date" name="cost_price" id="cost_price">       
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Supplier ID</label>
+                        <select name="supplier_id" id="supplier_id" class="form-select">
+                            <option value=""selected disabled>Select Supplier ID</option>
+                            <?php foreach($suppliers as $column):?>
+                                <option value="<?=htmlspecialchars($column['supplier_id'])?>">
+                                    <?=htmlspecialchars($column['supplier_name'])?>
+                                </option>
+                                <?php endforeach;?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Receive Date</label>
+                        <input type="date" name="received_date" id="received_date" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">User ID</label>
+                        <select name="user_id" id="user_id" class="form-select">
+                            <option value=""selected disabled>Select User ID</option>
+                            <?php foreach($users as $column):?>
+                                <option value="<?=htmlspecialchars($column['user_id'])?>">
+                                    <?=htmlspecialchars($column['username'])?>
+                                </option>
+                                <?php endforeach;?>
+                        </select>
+
                     </div>
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-success" name="add_purchaseorderitems" value="Add">
+					<input type="submit" class="btn btn-success" name="add_receive" value="Add">
 				</div>
 			</form>
 		</div>
@@ -327,11 +390,12 @@
 				<div class="modal-header">						
 					<h4 class="modal-title">Edit Customers</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
+				</div>				
+
 				<div class="modal-body">					
 					<div class="form-group">
-						<label>Purchase Orders Items ID</label>
-						<input type="text" class="form-control" name="Purchase_Orders_Items_id" id="Purchase_Orders_Items_id" required>
+						<label>Receive Products ID</label>
+						<input type="text" class="form-control" name="receive_product_id" id="receive_product_id" required>
 					</div>
 
 					<div class="form-group">
@@ -347,30 +411,60 @@
 					</div>
 
 					<div class="form-group">
-						<label class="form-label">Supplier ID</label>
-                        <select class="form-select" name="supplier_id" id="supplier_id">
+						<label class="form-label">Purchase Orders ID</label>
+                        <select class="form-select" name="Purchase_Orders_id" id="Purchase_Orders_id">
                                 <option value="" selected disabled>Select Product ID</option>
-                                <?php foreach($suppliers as $row):?>
-                                    <option value="<?=htmlspecialchars($row['supplier_id'])?>">
-                                        <?=htmlspecialchars($row['supplier_name'])?>
+                                <?php foreach($purchase as $row):?>
+                                    <option value="<?=htmlspecialchars($row['Purchase_Orders_id'])?>">
+                                        <?=htmlspecialchars($row['Purchase_Orders_id'])?>
                                     </option>
                                     <?php endforeach;?>
                         </select>
 					</div>		
 
                     <div class="form-group">
-                        <label class="form-label">Ordered Quantity</label>
-                        <input type="text" class="form-control" name="ordered_quantity" id="ordered_quantity">
+                        <label class="form-label">Received Quantity</label>
+                        <input type="text" class="form-control" name="received_quantity" id="received_quantity">
                     </div> 
                     
                     <div class="form-group">
-                        <label class="form-label">Purchase Cost Price</label>
-                        <input type="text" class="form-control form-date" name="purchase_cost_price" id="purchase_cost_price">       
+                        <label class="form-label">Cost Price</label>
+                        <input type="text" class="form-control form-date" name="cost_price" id="cost_price">       
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Supplier ID</label>
+                        <select name="supplier_id" id="supplier_id" class="form-select">
+                            <option value=""selected disabled>Select Supplier ID</option>
+                            <?php foreach($suppliers as $column):?>
+                                <option value="<?=htmlspecialchars($column['supplier_id'])?>">
+                                    <?=htmlspecialchars($column['supplier_name'])?>
+                                </option>
+                                <?php endforeach;?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Receive Date</label>
+                        <input type="date" name="received_date" id="received_date" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">User ID</label>
+                        <select name="user_id" id="user_id" class="form-select">
+                            <option value=""selected disabled>Select User ID</option>
+                            <?php foreach($users as $column):?>
+                                <option value="<?=htmlspecialchars($column['user_id'])?>">
+                                    <?=htmlspecialchars($column['username'])?>
+                                </option>
+                                <?php endforeach;?>
+                        </select>
+
                     </div>
                 </div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <input type="submit" class="btn btn-info" name="edit_purchaseOrdersItems" value="Save">
+                    <input type="submit" class="btn btn-info" name="edit_receive_products" value="Save">
 				</div>
 			</form>
 		</div>

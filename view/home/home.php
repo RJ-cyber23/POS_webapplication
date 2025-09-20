@@ -21,8 +21,7 @@
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle"><i class="fas fa-bars"></i></button>
         
 
-            <a class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 text-secondary" href="index.php?page=Customer"><i class="bi bi-eye fs-5"></i></a>
-
+          
 
              
             <!-- Navbar Search-->
@@ -48,7 +47,7 @@
             </ul>
 <!--End for Profile dropdown-->
         </nav>
-        <div id="layoutSidenav">
+        "<div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">

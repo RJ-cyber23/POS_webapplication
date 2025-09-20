@@ -51,27 +51,57 @@
                                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                     Dashboard Reports
                                 </a>
-
-                            <div class="sb-sidenav-menu-heading ">Add</div>
+<!--Add menu heading-->
+                            <div class="sb-sidenav-menu-heading ">Products Menu</div>
                             <a class="nav-link collapsed bg-success rounded-4" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAdd" aria-expanded="false" aria-controls="collapseLayouts">
                                <div class="sb-nav-link-icon"><i class="bi bi-basket3-fill text-white "></i></div>
-                                Basket
+                                Products
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
 
                                 
                                 <div class="collapse" id="collapseAdd" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                              <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="index.php?page=Add Product"><i class="bi bi-cart4 me-2"></i>Add Products</a>
-                                    <a class="nav-link" href="index.php?page=Purchase"><i class="bi bi-box-seam me-2"></i>Purchase Order</a>
-                                    <a class="nav-link" href="index.php?page=Payment Breakdown">Payment Breakdown</a>
-                                    <a class="nav-link" href="index.php?page=Profit for Products">Profit For Products</a>
-                                    <a class="nav-link" href="index.php?page=Purchase_Orders_Summary">Purchase Order Summary</a>
-                                    <a class="nav-link" href="index.php?page=Sales_Summary">Sales Summary</a>
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="index.php?page=ProductsAdd"><i class="bi bi-cart4 me-2"></i>Add Products</a>
+                                    <a class="nav-link" href="index.php?page=PurchaseOrders"><i class="bi bi-box-seam me-2"></i>Purchase Order</a>
+                                    <a class="nav-link" href="index.php?page=ReceiveProducts">Receive Products</a>
                                 </nav>
                                 </div>
+<!--End Add menu heading-->
+
+<!--Sales menu-->
+                            <div class="sb-sidenav-menu-heading ">Sales Menu</div>
+                            <a class="nav-link collapsed bg-warning rounded-4" href="#" data-bs-toggle="collapse" data-bs-target="#collapseSales" aria-expanded="false" aria-controls="collapseLayouts">
+                               <div class="sb-nav-link-icon"><i class="bi bi-basket3-fill text-white "></i></div>
+                                Sales
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
 
 
+                                <div class="collapse" id="collapseSales" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="index.php?page=SalesAdd"><i class="bi bi-cart4 me-2"></i>Sales</a>
+                                        <a class="nav-link" href="index.php?page=InvoiceAdd"><i class="bi bi-box-seam me-2"></i>Invoice</a>
+                                    </nav>
+                                </div>
+<!--End Sales menu-->
+
+<!--Customer Menu-->
+                            <div class="sb-sidenav-menu-heading ">Customers Menu</div>
+                            <a class="nav-link collapsed bg-primary rounded-4" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCustomer" aria-expanded="false" aria-controls="collapseLayouts">
+                               <div class="sb-nav-link-icon"><i class="bi bi-basket3-fill text-white "></i></div>
+                                Customers
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+
+
+                                <div class="collapse" id="collapseCustomer" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="index.php?page=CustomerAdd"><i class="bi bi-cart4 me-2"></i>Customers</a>
+                                        <a class="nav-link" href="index.php?page=PaymentAdd"><i class="bi bi-box-seam me-2"></i>Payments</a>
+                                    </nav>
+                                </div>
+<!--End Customer Menu-->
 
                             <div class="sb-sidenav-menu-heading">Reports</div>
 
@@ -85,7 +115,7 @@
                                 <div class="collapse" id="collapseReport" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="index.php?page=End_of_Day">End of Day Summary</a>
-                                    <a class="nav-link" href="index.php?page=Inventory Status">Inventory Status</a>
+                                    <a class="nav-link" href="index.php?page=Inventory Status"><i class="bi bi-backpack3-fill me-2"></i>Inventory Status</a>
                                     <a class="nav-link" href="index.php?page=Invoices Total Sales">Invoice Total Sales</a>
                                     <a class="nav-link" href="index.php?page=Payment Breakdown">Payment Breakdown</a>
                                     <a class="nav-link" href="index.php?page=Profit for Products">Profit For Products</a>
@@ -152,8 +182,9 @@
                     </div>
                 </nav>
             </div>
+
             <div id="layoutSidenav_content">
-                <main>
+                 <main>
 <!--Error message-->
 <div class="container-solid">
                 <?php if (isset($success)) : ?>

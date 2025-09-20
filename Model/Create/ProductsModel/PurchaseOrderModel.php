@@ -2,45 +2,41 @@
     require_once 'core/database.php';
     class PurchaseOrderModel
     {
-        
+        private $PurchaseOrderTableColumn=['Purchase_Orders_id', 
+        'Purchase_Orders_Items_id',
+        'supplier_id',
+        'order_date',
+        'status_id'];
+
         public function purchase_order_model($data)
         {
 
-            $Purchase_Orders_id=$data['Purchase_Orders_id'];
-            $Purchase_Orders_Items_id=$data['Purchase_Orders_Items_id'];
-            $supplier_id=$data['supplier_id'];
-            $order_date=$data['order_date'];
-            $status_id=$data['status_id'];
+           $conn=(new Database())->connect();
+           if(!$conn)
+           {
+                return "Database Connection Error! ";
+           }
 
-            $conn=new Database();
-            $result=$conn->connect();
+           try
+           {
+                $DataInsert=array_intersect_key($data, 
+                array_flip($this->PurchaseOrderTableColumn));
 
-            if($result)
-            {
-                try
+                if(!$DataInsert)
                 {
-                    $insert=$result->prepare(
-                        "INSERT INTO PurchaseOrders	( Purchase_Orders_id,	Purchase_Orders_Items_id, 	supplier_id, 	order_date, 	status_id ) 
-                        VALUES (:Purchase_Orders_id,	:Purchase_Orders_Items_id, 	:supplier_id, 	:order_date, 	:status_id)");
-                        
-                    $insert->bindParam('Purchase_Orders_id', $Purchase_Orders_id);
-                    $insert->bindParam('Purchase_Orders_Items_id', $Purchase_Orders_Items_id);
-                    $insert->bindParam('supplier_id', $supplier_id);
-                    $insert->bindParam('order_date', $order_date);
-                    $insert->bindParam('status_id', $status_id);
+                    return "Invalid Data Insert";
+                }
 
-                    $insert->execute();
-                    return true;
-                }
-                catch(PDOException $error)
-                {
-                    return $error->getMessage();
-                }
-            }
-            else
-            {
-                echo "Database Connection Error";
-            }
+                $columns=implode(', ', array_keys($DataInsert));
+                $placeholder=":". implode(", :", array_keys($DataInsert));
+
+                $insert=$conn->prepare(
+                    "INSERT INTO PurchaseOrders ($columns) VALUES ($placeholder)");
+                $insert->execute($DataInsert);
+                return true;
+           }catch(PDOException $error){
+                return $error->getMessage();
+           }
 
         }
     }
